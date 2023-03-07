@@ -3,6 +3,7 @@ import 'package:i_eats/utils/colors.dart';
 import 'package:i_eats/widgets/big_text.dart';
 import 'package:i_eats/widgets/icon_and_text_widget.dart';
 import 'package:i_eats/widgets/small_text.dart';
+import 'package:dots_indicator/dots_indicator.dart';
 
 //stful
 class FoodPageBody extends StatefulWidget {
@@ -24,7 +25,9 @@ class _FoodPageBodyState extends State<FoodPageBody> {
 
     //improve horizontal transition.
     pageController.addListener(() {
-      _currentPageValue = pageController.page!;
+      setState(() {
+        _currentPageValue = pageController.page!;
+      });
     });
   }
 
@@ -36,15 +39,29 @@ class _FoodPageBodyState extends State<FoodPageBody> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      //color: Colors.grey[100],
-      height: 320,
-      child: PageView.builder(
-          controller: pageController,
-          itemCount: 5,
-          itemBuilder: (context, position){
-            return _buildPageItem(position);
-          }),
+    return Column(
+      children: [
+        Container(
+          //color: Colors.grey[100],
+          height: 320,
+          child: PageView.builder(
+              controller: pageController,
+              itemCount: 5,
+              itemBuilder: (context, position){
+                return _buildPageItem(position);
+              }),
+        ),
+        new DotsIndicator(
+          dotsCount: 5,
+          position: _currentPageValue,
+          decorator: DotsDecorator(
+            activeColor: AppColors.mainColor,
+            size: const Size.square(9.0),
+            activeSize: const Size(18.0, 9.0),
+            activeShape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5.0)),
+          ),
+        )
+      ],
     );
   }
 

@@ -19,6 +19,7 @@ class _MainFoodPageState extends State<MainFoodPage> {
     return Scaffold(
       body: Column(
         children: [
+          //showing header
           Container(
             child: Container(
               margin: EdgeInsets.only(top: 45, bottom: 45),
@@ -52,6 +53,7 @@ class _MainFoodPageState extends State<MainFoodPage> {
               ),
             ),
           ),
+          //showing the body
           FoodPageBody()
         ],
       ),
