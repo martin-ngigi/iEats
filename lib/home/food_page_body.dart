@@ -53,20 +53,21 @@ class _FoodPageBodyState extends State<FoodPageBody> {
     if(index == _currentPageValue.floor()){ // floor() is for rounding offf
       var currScale = 1-(_currentPageValue-index)*(1-_scaleFactor);
       var currTrans = _height*(1-currScale)/2;
-      matrix = Matrix4.diagonal3Values(1, currScale, 1)..setTranslationRaw(0, currScale, 0);
+      matrix = Matrix4.diagonal3Values(1, currScale, 1)..setTranslationRaw(0, currTrans, 0);
 
     }
     else if(index == _currentPageValue.floor()+1){
       var currScale = _scaleFactor+(_currentPageValue-index+1)*(1-_scaleFactor);
       var currTrans = _height*(1-currScale)/2;
       matrix = Matrix4.diagonal3Values(1, currScale, 1);
-      matrix = Matrix4.diagonal3Values(1, currScale, 1)..setTranslationRaw(0, currScale, 0);
+      matrix = Matrix4.diagonal3Values(1, currScale, 1)..setTranslationRaw(0, currTrans, 0);
 
     }
     else if(index == _currentPageValue.floor()-1){
       var currScale = 1-(_currentPageValue-index)*(1-_scaleFactor);
+      var currTrans = _height*(1-currScale)/2;
       matrix = Matrix4.diagonal3Values(1, currScale, 1);
-      matrix = Matrix4.diagonal3Values(1, currScale, 1)..setTranslationRaw(0, currScale, 0);
+      matrix = Matrix4.diagonal3Values(1, currScale, 1)..setTranslationRaw(0, currTrans, 0);
     }
     else {
       var currScale = 0.8;
