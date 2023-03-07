@@ -1,5 +1,6 @@
 //stless
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:i_eats/utils/dimensions.dart';
 
 class BigText extends StatelessWidget {
@@ -9,7 +10,7 @@ class BigText extends StatelessWidget {
   TextOverflow overflow;
 
   BigText({Key? key,
-    this.color =  const Color(0xFF332d),
+    this.color = Colors.black,
     required this.text,
     this.size = 0,
     this.overflow = TextOverflow.ellipsis
