@@ -5,6 +5,8 @@ import 'package:i_eats/widgets/icon_and_text_widget.dart';
 import 'package:i_eats/widgets/small_text.dart';
 import 'package:dots_indicator/dots_indicator.dart';
 
+import '../utils/dimensions.dart';
+
 //stful
 class FoodPageBody extends StatefulWidget {
   const FoodPageBody({Key? key}) : super(key: key);
@@ -17,7 +19,8 @@ class _FoodPageBodyState extends State<FoodPageBody> {
   PageController pageController = PageController(viewportFraction: 0.85);
   var _currentPageValue = 0.0;
   double _scaleFactor = 0.8;
-  double _height = 220;
+  //double _height = 220;
+  double _height = Dimensions.pageViewContainer;
 
   @override
   void initState() {
@@ -43,7 +46,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
       children: [
         Container(
           //color: Colors.grey[100],
-          height: 320,
+          height: Dimensions.pageView, //same as 320
           child: PageView.builder(
               controller: pageController,
               itemCount: 5,
@@ -97,10 +100,11 @@ class _FoodPageBodyState extends State<FoodPageBody> {
       child: Stack(//stack container ensures that the child container takes the specified height and not the parent height. We can also fut another container
         children: [
           Container(
-            height: 220,
-            margin: EdgeInsets.only(left: 10, right: 10),
+            //height: 220,
+            height: Dimensions.pageViewContainer,
+            margin: EdgeInsets.only(left: Dimensions.width10, right: Dimensions.width10),
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(30),
+              borderRadius: BorderRadius.circular(Dimensions.radius30),
               color: index.isEven? Color(0xFF69c5df) : Color(0xFF9294cc),
               image: DecorationImage(
                 fit: BoxFit.cover,
@@ -113,8 +117,9 @@ class _FoodPageBodyState extends State<FoodPageBody> {
           Align(
             alignment: Alignment.bottomCenter,
             child: Container(
-              height: 120,
-              margin: EdgeInsets.only(left: 30, right: 30, bottom: 30),
+              //height: 120,
+              height: Dimensions.pageViewTextController,
+              margin: EdgeInsets.only(left: Dimensions.width30, right: Dimensions.width30, bottom: Dimensions.height30),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(20),
                 color: Colors.white,
@@ -135,12 +140,12 @@ class _FoodPageBodyState extends State<FoodPageBody> {
                 ]
               ),
               child: Container(
-                padding: EdgeInsets.only(top: 15, left: 15, right: 15),
+                padding: EdgeInsets.only(top: Dimensions.height15, left: Dimensions.height15, right: Dimensions.height15),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     BigText(text: "Chinese Side", color: Colors.black,),
-                    SizedBox(height: 10,),
+                    SizedBox(height: Dimensions.height10,),
                     Row(
                       children: [
                         Wrap(
@@ -154,8 +159,9 @@ class _FoodPageBodyState extends State<FoodPageBody> {
                         SmallText(text: "Comments"),
                       ],
                     ),
-                    SizedBox(height: 20,),
+                    SizedBox(height: Dimensions.height20,),
                     Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         IconAndTextWidget(icon: Icons.circle_sharp,
                             text: "Normal",
