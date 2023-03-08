@@ -7,6 +7,7 @@ import 'package:i_eats/pages/food/recommended_food_detail.dart';
 import 'package:i_eats/pages/home/food_page_body.dart';
 import 'package:i_eats/pages/home/main_food_page.dart';
 import 'controllers/popular_product_controller.dart';
+import 'controllers/recommended_product_controller.dart';
 import 'helper/dependencies.dart' as dep;
 
 Future<void> main() async {
@@ -26,6 +27,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Get.find<PopularProductController>().getPopularProductList();
+    Get.find<RecommendedProductController>().getRecommendedProductList();
 
     /**
      * "GetMaterialApp" will solve "Each child must be laid out exactly once" error
