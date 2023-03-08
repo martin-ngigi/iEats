@@ -9,7 +9,10 @@ class PopularProductController extends GetxController{
   
   List<dynamic> _popularProductList = []; //"_" means its private
   List<dynamic> get popularProductList => _popularProductList; //make the private _popularProductList public
-  
+
+  bool _isLoaded = false;//private
+  bool get isLoaded => _isLoaded;//public getter
+
   Future<void> getPopularProductList() async{
     Response response = await popularProductRepo.getPopularProductList();
     if(response.statusCode==200){
@@ -17,6 +20,7 @@ class PopularProductController extends GetxController{
       _popularProductList =[];//clear data
       _popularProductList.addAll(Product.fromJson(response.body).products);
       //print("-------> Popular products: $_popularProductList");
+      _isLoaded = true;
       update(); //similar to set state
     }
     else{

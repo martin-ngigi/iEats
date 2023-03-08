@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:i_eats/utils/colors.dart';
 import 'package:i_eats/widgets/big_text.dart';
 import 'package:i_eats/widgets/icon_and_text_widget.dart';
 import 'package:i_eats/widgets/small_text.dart';
 import 'package:dots_indicator/dots_indicator.dart';
 
+import '../../controllers/popular_product_controller.dart';
+import '../../models/product.dart';
+import '../../utils/app_constants.dart';
 import '../../utils/dimensions.dart';
 import '../../widgets/app_column.dart';
 
@@ -46,30 +50,47 @@ class _FoodPageBodyState extends State<FoodPageBody> {
   Widget build(BuildContext context) {
     return Column(
       children: [
+
         //slider section
-        Container(
-          //color: Colors.grey[100],
-          height: Dimensions.pageView, //same as 320
-          child: PageView.builder(
-              controller: pageController,
-              itemCount: 5,
-              itemBuilder: (context, position){
-                return _buildPageItem(position);
-              }),
+        //GetBuilder will notify on data change
+        GetBuilder<PopularProductController>(
+            builder: (popularProducts){
+              //if isLoaded is true, show image container, else show progress indicator
+              return popularProducts.isLoaded?Container(
+                //color: Colors.grey[100],
+                height: Dimensions.pageView, //same as 320
+                child: PageView.builder(
+                    controller: pageController,
+                    itemCount: popularProducts.popularProductList.length,
+                    itemBuilder: (context, position){
+                      return _buildPageItem(position, popularProducts.popularProductList[position]);
+                    }),
+              ) : CircularProgressIndicator(
+                color: AppColors.mainColor,
+              );
+            }
         ),
+
         //dots
-        new DotsIndicator(
-          dotsCount: 5,
-          position: _currentPageValue,
-          decorator: DotsDecorator(
-            activeColor: AppColors.mainColor,
-            size: const Size.square(9.0),
-            activeSize: const Size(18.0, 9.0),
-            activeShape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5.0)),
-          ),
+        GetBuilder<PopularProductController>(
+            builder: (popularProducts) {
+              return DotsIndicator(
+                  //if number of dots is less than 1, show 1 dot... else show actual number of dots
+                  dotsCount:  popularProducts.popularProductList.length <= 0? 1: popularProducts.popularProductList.length,
+                  position: _currentPageValue,
+                  decorator: DotsDecorator(
+                  activeColor: AppColors.mainColor,
+                  size: const Size.square(9.0),
+              activeSize: const Size(18.0, 9.0),
+              activeShape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5.0)),
+              ),
+              );
+            }
         ),
+
         //popular text
         SizedBox(height: Dimensions.height30,),
+
         Container(
           margin: EdgeInsets.only(left: Dimensions.width30),
           child: Row(
@@ -162,7 +183,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
     );
   }
 
-  Widget _buildPageItem(int index){
+  Widget _buildPageItem(int index, ProductModel popularProduct){
     Matrix4 matrix =  new Matrix4.identity();
     if(index == _currentPageValue.floor()){ // floor() is for rounding offf
       var currScale = 1-(_currentPageValue-index)*(1-_scaleFactor);
@@ -202,8 +223,8 @@ class _FoodPageBodyState extends State<FoodPageBody> {
               color: index.isEven? Color(0xFF69c5df) : Color(0xFF9294cc),
               image: DecorationImage(
                 fit: BoxFit.cover,
-                image: AssetImage(
-                    "assets/images/food1.png"
+                image: NetworkImage(
+                   AppConstants.BASE_URL+"/uploads/"+ popularProduct.img!
                 ),
               ),
             ),
@@ -235,7 +256,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
               ),
               child: Container(
                 padding: EdgeInsets.only(top: Dimensions.height15, left: Dimensions.height15, right: Dimensions.height15),
-                child: AppColumn(text: "Kenyan Side",),
+                child: AppColumn(text: popularProduct.name!,),
               ),
             ),
           ),
