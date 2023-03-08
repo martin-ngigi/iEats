@@ -1,10 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:i_eats/pages/food/popular_food_detail.dart';
 import 'package:i_eats/pages/food/recommended_food_detail.dart';
+import 'package:i_eats/pages/home/food_page_body.dart';
 import 'package:i_eats/pages/home/main_food_page.dart';
+import 'controllers/popular_product_controller.dart';
+import 'helper/dependencies.dart' as dep;
 
-void main() {
+Future<void> main() async {
+  //wait till all dependencies are loaded
+  WidgetsFlutterBinding.ensureInitialized();
+
+  //load the dependencies
+  await dep.init();
+
   runApp(const MyApp());
 }
 
@@ -14,6 +25,8 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    Get.find<PopularProductController>().getPopularProductList();
+
     /**
      * "GetMaterialApp" will solve "Each child must be laid out exactly once" error
      */
@@ -24,7 +37,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       // home: MainFoodPage()
-       home: RecommendedFoodDetail()
+       home: MainFoodPage()
     );
   }
 }

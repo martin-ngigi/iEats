@@ -31,7 +31,7 @@ class AppColumn extends StatelessWidget {
             SmallText(text: "Comments"),
           ],
         ),
-        SizedBox(height: Dimensions.height20,),
+        SizedBox(height: Dimensions.height10,),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
