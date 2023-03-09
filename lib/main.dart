@@ -6,6 +6,7 @@ import 'package:i_eats/pages/food/popular_food_detail.dart';
 import 'package:i_eats/pages/food/recommended_food_detail.dart';
 import 'package:i_eats/pages/home/food_page_body.dart';
 import 'package:i_eats/pages/home/main_food_page.dart';
+import 'package:i_eats/routes/route_helper.dart';
 import 'controllers/popular_product_controller.dart';
 import 'controllers/recommended_product_controller.dart';
 import 'helper/dependencies.dart' as dep;
@@ -35,11 +36,9 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      // home: MainFoodPage()
-       home: MainFoodPage()
+       home: MainFoodPage(),
+      initialRoute: RouteHelper.initial,
+      getPages: RouteHelper.routes,
     );
   }
 }
