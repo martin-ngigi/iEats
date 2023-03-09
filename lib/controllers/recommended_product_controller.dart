@@ -17,7 +17,7 @@ class RecommendedProductController extends GetxController{
   Future<void> getRecommendedProductList() async{
     Response response = await recommendedProductRepo.getRecommendedProductList();
     if(response.statusCode==200){
-      print("----------->Got products recommended");
+      //print("----------->Got products recommended");
       _recommendedProductList =[];//clear data
       _recommendedProductList.addAll(Product.fromJson(response.body).products);
       //print("-------> recommended products: $_popularProductList");
