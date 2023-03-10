@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
+import 'package:i_eats/pages/cart/cart_page.dart';
 import 'package:i_eats/pages/food/popular_food_detail.dart';
 import 'package:i_eats/pages/food/recommended_food_detail.dart';
 import 'package:i_eats/pages/home/food_page_body.dart';

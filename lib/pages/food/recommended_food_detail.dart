@@ -14,6 +14,7 @@ import '../../controllers/cart_controller.dart';
 import '../../controllers/recommended_product_controller.dart';
 import '../../utils/app_constants.dart';
 import '../../utils/dimensions.dart';
+import '../cart/cart_page.dart';
 
 class RecommendedFoodDetail extends StatelessWidget {
   final int pageId;
@@ -52,11 +53,16 @@ class RecommendedFoodDetail extends StatelessWidget {
                       Get.find<PopularProductController>().totalItems>=1?
                       Positioned(
                           right: 0, top: 0,
-                          child: AppIcon(
-                            icon: Icons.circle,
-                            size: 20,
-                            iconColor: Colors.transparent,
-                            backgroundColor: AppColors.mainColor,
+                          child: GestureDetector(
+                            onTap: (){
+                              Get.to(()=>CartPage());
+                            },
+                            child: AppIcon(
+                              icon: Icons.circle,
+                              size: 20,
+                              iconColor: Colors.transparent,
+                              backgroundColor: AppColors.mainColor,
+                            ),
                           )
                       ):
                       Container(),

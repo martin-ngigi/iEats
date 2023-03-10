@@ -4,6 +4,7 @@ import 'package:i_eats/controllers/cart_controller.dart';
 import 'package:i_eats/data/repository/popular_product_repo.dart';
 import 'package:i_eats/utils/colors.dart';
 
+import '../models/cart_model.dart';
 import '../models/product.dart';
 
 class PopularProductController extends GetxController{
@@ -112,4 +113,8 @@ class PopularProductController extends GetxController{
     return _cart.totalItems;
   }
 
+  //getter for list
+  List<CartModel> get getItems{
+    return _cart.getItems;
+  }
 }
