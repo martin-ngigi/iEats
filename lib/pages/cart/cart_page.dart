@@ -70,8 +70,9 @@ class CartPage extends StatelessWidget {
                   removeTop: true,
                   //MediaQuery.removePadding will remove the top padding from the ListView.builder
                   child: GetBuilder<CartController>(builder: (cartController){
+                    var _cartList = cartController.getItems;
                     return ListView.builder(
-                        itemCount: cartController.getItems.length,
+                        itemCount: _cartList.length,
                         itemBuilder: (_, index){
                           return Container(
                             width: double.maxFinite,
@@ -122,16 +123,17 @@ class CartPage extends StatelessWidget {
                                               children: [
                                                 GestureDetector(
                                                     onTap: (){
-                                                      //popularProduct.setQuantity(false);
+                                                      cartController.addItem(_cartList[index].product!, -1); //decrease
                                                     },
                                                     child: Icon(Icons.remove, color: AppColors.signColor,)
                                                 ),
                                                 SizedBox(width: Dimensions.height10/2,),
-                                                BigText(text: "0"), //popularProduct.inCartItems.toString()),
+                                                BigText(text: _cartList[index].quantity.toString()), //popularProduct.inCartItems.toString()),
                                                 SizedBox(width: Dimensions.height10/2,),
                                                 GestureDetector(
                                                     onTap: (){
-                                                      //popularProduct.setQuantity(true);
+                                                      cartController.addItem(_cartList[index].product!, 1); //increase
+                                                      print("increase ++");
                                                     },
                                                     child: Icon(Icons.add, color: AppColors.signColor,)
                                                 ),
