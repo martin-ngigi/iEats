@@ -41,9 +41,11 @@ class PopularProductController extends GetxController{
   void setQuantity(bool isIncrement){
     if(isIncrement){
       _quantity = checkQuantity(_quantity+1);
+      print("---> Increase number of items to: "+_quantity.toString());
     }
     else{
       _quantity = checkQuantity(_quantity-1);
+      print("---> Drcreased number of items to: "+_quantity.toString());
     }
 
     update(); //same as setState(){}
