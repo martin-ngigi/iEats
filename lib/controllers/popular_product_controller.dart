@@ -59,6 +59,10 @@ class PopularProductController extends GetxController{
         backgroundColor: AppColors.mainColor,
         colorText: Colors.white
       );
+      if(_inCartItems>0){
+        _quantity =-_inCartItems;
+        return quantity;
+      }
       return 0;
     }
     else if((_inCartItems+quantity)>20){
