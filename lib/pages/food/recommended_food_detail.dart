@@ -46,35 +46,45 @@ class RecommendedFoodDetail extends StatelessWidget {
 
                 //cart icon
                 GetBuilder<PopularProductController>(builder: (controller){
-                  return Stack(
-                    children: [
-                      AppIcon(icon: Icons.shopping_cart_outlined,),
-                      //totalItems is greater than 1, show number of items, else dont show number items
-                      Get.find<PopularProductController>().totalItems>=1?
-                      Positioned(
-                          right: 0, top: 0,
-                          child: GestureDetector(
-                            onTap: (){
-                              Get.to(()=>CartPage());
-                            },
+                  return GestureDetector(
+                    onTap: (){
+                      //navigate to cart page
+                      // Get.to(()=>CartPage());
+                      if(controller.totalItems>=1){
+                        Get.toNamed(RouteHelper.getCartPage());
+                      }
+                      else{
+                        Get.snackbar("Cart Empty", "You have not added any items yet.",
+                            backgroundColor: AppColors.mainColor,
+                            colorText: Colors.white
+                        );
+                      }
+                    },
+                    child: Stack(
+                      children: [
+                        AppIcon(icon: Icons.shopping_cart_outlined,),
+                        //totalItems is greater than 1, show number of items, else dont show number items
+                        Get.find<PopularProductController>().totalItems>=1?
+                        Positioned(
+                            right: 0, top: 0,
                             child: AppIcon(
                               icon: Icons.circle,
                               size: 20,
                               iconColor: Colors.transparent,
                               backgroundColor: AppColors.mainColor,
                             ),
-                          )
-                      ):
-                      Container(),
-                      Get.find<PopularProductController>().totalItems>=1?
-                      Positioned(
-                        right: 3, top: 3,
-                        child: BigText(text: Get.find<PopularProductController>().totalItems.toString(),
-                          size: 12, color: Colors.black,
-                        ),
-                      ):
-                      Container(),
-                    ],
+                        ):
+                        Container(),
+                        Get.find<PopularProductController>().totalItems>=1?
+                        Positioned(
+                          right: 3, top: 3,
+                          child: BigText(text: Get.find<PopularProductController>().totalItems.toString(),
+                            size: 12, color: Colors.black,
+                          ),
+                        ):
+                        Container(),
+                      ],
+                    ),
                   );
                 }),
 

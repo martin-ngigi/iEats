@@ -11,6 +11,8 @@ import 'package:i_eats/widgets/app_icon.dart';
 import 'package:i_eats/widgets/big_text.dart';
 import 'package:i_eats/widgets/small_text.dart';
 
+import '../../routes/route_helper.dart';
+
 class CartPage extends StatelessWidget {
   const CartPage({Key? key}) : super(key: key);
 
@@ -35,7 +37,8 @@ class CartPage extends StatelessWidget {
                 SizedBox(width: Dimensions.width20*5,),
                 GestureDetector(
                   onTap: (){
-                    Get.to(()=>MainFoodPage());
+                    //navigate to ome
+                    Get.toNamed(RouteHelper.getInitial());
                   },
                   child: AppIcon(
                     icon: Icons.home_outlined,
