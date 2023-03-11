@@ -13,8 +13,8 @@ class RouteHelper{
   static const String cartPage ="/cart-page";
 
   static String getInitial() =>'$initial';
-  static String getPopularFood(int pageId) =>'$popularFood?pageId=$pageId';// passing data to next page
-  static String getRecommendedFood(int pageId) =>'$recommendedFood?pageId=$pageId';// passing data to next page
+  static String getPopularFood(int pageId, String page) =>'$popularFood?pageId=$pageId&page=$page';// passing data to next page
+  static String getRecommendedFood(int pageId, String page) =>'$recommendedFood?pageId=$pageId&page=$page';// passing data to next page
   static String getCartPage() =>'$cartPage';
 
   static List<GetPage> routes = [
@@ -31,7 +31,8 @@ class RouteHelper{
     //popularFood
     GetPage(name: popularFood, page: (){
       var pageId = Get.parameters['pageId'];
-        return PopularFoodDetail(pageId: int.parse(pageId!));
+      var page = Get.parameters['page'];
+        return PopularFoodDetail(pageId: int.parse(pageId!), page:page!);
       },
       transition: Transition.rightToLeft,
       transitionDuration:  Duration(milliseconds: 500), // half a second
@@ -40,7 +41,8 @@ class RouteHelper{
     //recommendedFood
     GetPage(name: recommendedFood, page: (){
       var pageId = Get.parameters['pageId'];
-      return RecommendedFoodDetail(pageId: int.parse(pageId!));
+      var page = Get.parameters['page'];
+      return RecommendedFoodDetail(pageId: int.parse(pageId!), page:page!);
     },
       transition: Transition.rightToLeft,
       transitionDuration:  Duration(milliseconds: 500), // half a second

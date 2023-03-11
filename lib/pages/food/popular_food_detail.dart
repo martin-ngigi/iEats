@@ -20,8 +20,9 @@ import '../../widgets/small_text.dart';
 import '../cart/cart_page.dart';
 
 class PopularFoodDetail extends StatelessWidget {
-  int pageId;
-  PopularFoodDetail({Key? key, required this.pageId}) : super(key: key);
+  final int pageId;
+  final String page;
+  const PopularFoodDetail({Key? key, required this.pageId, required this.page}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -62,8 +63,15 @@ class PopularFoodDetail extends StatelessWidget {
                 children: [
                   GestureDetector(
                     onTap: (){
-                      //navigate to MainFoodPage
-                      Get.to(()=>MainFoodPage());
+                      if(page=="cartpage"){
+                        //navigate to cart page
+                        Get.toNamed(RouteHelper.getCartPage());
+                      }
+                      else{
+                        //navigate to initial page
+                        Get.toNamed(RouteHelper.getInitial());
+                      }
+                      //Get.to(()=>MainFoodPage());
                     },
                       child: AppIcon(icon: Icons.arrow_back_ios,)
                   ),

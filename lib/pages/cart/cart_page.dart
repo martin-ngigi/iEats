@@ -3,6 +3,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:i_eats/controllers/cart_controller.dart';
+import 'package:i_eats/controllers/popular_product_controller.dart';
+import 'package:i_eats/controllers/recommended_product_controller.dart';
 import 'package:i_eats/pages/home/main_food_page.dart';
 import 'package:i_eats/utils/app_constants.dart';
 import 'package:i_eats/utils/colors.dart';
@@ -81,22 +83,40 @@ class CartPage extends StatelessWidget {
                             //margin: EdgeInsets.only(bottom: 10),
                             child: Row(
                               children: [
-                                Container(
-                                  width: Dimensions.height20*5,
-                                  height: Dimensions.height20*5,
-                                  margin: EdgeInsets.only(bottom: Dimensions.height10),
-                                  decoration: BoxDecoration(
-                                    image: DecorationImage(
-                                        fit: BoxFit.cover,
-                                        // image: AssetImage(
-                                        //     "assets/images/food1.png"
-                                        // )
-                                      image: NetworkImage(
-                                        AppConstants.BASE_URL+AppConstants.UPLOAD_URL+ cartController.getItems[index].img!
+                                GestureDetector(
+                                  onTap: (){
+                                    //get popular Index from popularProductList
+                                    var popularIndex = Get.find<PopularProductController>()
+                                        .popularProductList.indexOf(_cartList[index].product!);
+                                    if(popularIndex>=0){
+                                      //navigate to popular food page
+                                      Get.toNamed(RouteHelper.getPopularFood(popularIndex, "cartpage"));
+                                    }
+                                    else{
+                                      //could not get popular Index from popularProductList so the index is less 0,
+                                      var recommendedIndex = Get.find<RecommendedProductController>()
+                                          .recommendedProductList.indexOf(_cartList[index].product!);
+                                      //navigate to recommended food page
+                                      Get.toNamed(RouteHelper.getRecommendedFood(recommendedIndex, "cartpage"));
+                                    }
+                                  },
+                                  child: Container(
+                                    width: Dimensions.height20*5,
+                                    height: Dimensions.height20*5,
+                                    margin: EdgeInsets.only(bottom: Dimensions.height10),
+                                    decoration: BoxDecoration(
+                                      image: DecorationImage(
+                                          fit: BoxFit.cover,
+                                          // image: AssetImage(
+                                          //     "assets/images/food1.png"
+                                          // )
+                                        image: NetworkImage(
+                                          AppConstants.BASE_URL+AppConstants.UPLOAD_URL+ cartController.getItems[index].img!
+                                        ),
                                       ),
+                                      borderRadius: BorderRadius.circular(Dimensions.radius20),
+                                      color: Colors.white,
                                     ),
-                                    borderRadius: BorderRadius.circular(Dimensions.radius20),
-                                    color: Colors.white,
                                   ),
                                 ),
                                 SizedBox(width: Dimensions.width10,),
