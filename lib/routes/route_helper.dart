@@ -5,6 +5,7 @@ import 'package:i_eats/pages/home/main_food_page.dart';
 
 import '../pages/cart/cart_page.dart';
 import '../pages/food/recommended_food_detail.dart';
+import '../pages/home/home_page.dart';
 
 class RouteHelper{
   static const String initial ="/";
@@ -22,7 +23,7 @@ class RouteHelper{
     //initial
     //GetPage(name: initial, page: ()=>MainFoodPage()),
     GetPage(name: initial, page: (){
-      return MainFoodPage();
+      return HomePage();
     },
       transition: Transition.rightToLeft,
       transitionDuration:  Duration(milliseconds: 500), // half a second
