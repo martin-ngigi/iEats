@@ -15,6 +15,9 @@ class CartController extends GetxController{
   Map<int, CartModel> _items = {};
   Map<int, CartModel> get items => _items;
 
+  //only for storage and shared preferences
+  List<CartModel> storageItems = [];
+
   void addItem(ProductModel product, int quantity){
     //print("Length/Number of items is "+_items.length.toString());
     var totalQuantity = 0;
@@ -66,6 +69,9 @@ class CartController extends GetxController{
         );
       }
     }
+
+    //addToCartList so as to be saved to sharedPreference
+    cartRepo.addToCartList(getItems);
 
     update(); //same as setState(){}
 
@@ -122,5 +128,20 @@ class CartController extends GetxController{
     });
 
     return total;
+  }
+
+  List<CartModel> getCartData(){
+    setCart =cartRepo.getCartList();
+
+    return storageItems;
+  }
+
+  //setter to set storageItems items
+  set setCart(List<CartModel> items){
+    storageItems = items;
+    print("-----> [cart_controller] length of cart items in SharedPreference: "+storageItems.length.toString());
+    for(int i=0; i<storageItems.length; i++){
+      _items.putIfAbsent(storageItems[i].product!.id!, () => storageItems[i]);
+    }
   }
 }
