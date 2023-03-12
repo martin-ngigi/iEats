@@ -208,7 +208,9 @@ class CartPage extends StatelessWidget {
                 padding: EdgeInsets.only(top: Dimensions.height20, bottom: Dimensions.height20, left: Dimensions.width20, right: Dimensions.width20),
                 child: GestureDetector(
                     onTap: (){
-                      //popularProduct.addItem(product);
+                      // this will clear the current cart, and store to history cart
+                      print("Tapped");
+                      cartController.addToHistory();
                     },
                     child: BigText(text: "Check out ", color: Colors.white,)),
                 decoration: BoxDecoration(

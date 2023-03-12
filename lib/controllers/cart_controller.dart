@@ -144,4 +144,23 @@ class CartController extends GetxController{
       _items.putIfAbsent(storageItems[i].product!.id!, () => storageItems[i]);
     }
   }
+
+  //cart history
+  void addToHistory(){
+    cartRepo.addToCartHistoryList();
+
+    //clear
+    clear();
+  }
+
+  void clear(){
+    //set _items map to an empty map
+    _items ={};
+    //update the UI .. same as setState(){}
+    update();
+  }
+
+  List<CartModel> getCartHistoryList(){
+    return cartRepo.getCartHistoryList();
+  }
 }

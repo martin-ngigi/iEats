@@ -8,4 +8,14 @@
 - [E-commerce app documentation](https://www.dbestech.com/tutorials/flutter-food-delivery-e-commerce-app-documentation)
 - [Json to Dart conversion](https://javiercbk.github.io/json_to_dart/)
 - [Popular products endpoint](http://mvs.bslmeiyu.com/api/v1/products/popular)
-- 
+
+## Short-Cuts
+- To find a certain key word globally, press:
+```
+ctrl + shift + F
+```
+
+- To rename a word globally: 
+```
+shift + F6
+```
