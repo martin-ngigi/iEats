@@ -97,7 +97,16 @@ class CartPage extends StatelessWidget {
                                       var recommendedIndex = Get.find<RecommendedProductController>()
                                           .recommendedProductList.indexOf(_cartList[index].product!);
                                       //navigate to recommended food page
-                                      Get.toNamed(RouteHelper.getRecommendedFood(recommendedIndex, "cartpage"));
+                                      if(recommendedIndex<0){//product not present from recommended page... this is because one came from cart history. The reason is because: history products may be >1 year old of which they might not be present in the current products(popular/recommended).
+                                        //show message
+                                        Get.snackbar("History product", "Product review is not available for history product",
+                                            backgroundColor: AppColors.mainColor,
+                                            colorText: Colors.white
+                                        );
+                                      }
+                                      else{
+                                        Get.toNamed(RouteHelper.getRecommendedFood(recommendedIndex, "cartpage"));
+                                      }
                                     }
                                   },
                                   child: Container(
