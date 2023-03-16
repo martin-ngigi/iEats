@@ -5,6 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:i_eats/base/no_data_page.dart';
 import 'package:i_eats/controllers/cart_controller.dart';
 import 'package:i_eats/models/cart_model.dart';
 import 'package:i_eats/utils/app_constants.dart';
@@ -63,6 +64,18 @@ class CartHistory extends StatelessWidget {
 
     var listCounter = 0;
 
+    Widget timeWidget(int index){
+      var outputDate = DateTime.now().toString();
+      //process date
+      if(index<getCartHistoryList.length){
+        DateTime parseDate = DateFormat("yyyy-MM-dd HH:mm:ss").parse(getCartHistoryList[listCounter].time!);
+        var inputDate = DateTime.parse(parseDate.toString());
+        var outputFormat = DateFormat("MM/dd/yyyy hh:mm a");
+        outputDate = outputFormat.format(inputDate);
+      }
+      return BigText(text: outputDate);
+    }
+
     return Scaffold(
       body: Column(
         children: [
@@ -84,16 +97,18 @@ class CartHistory extends StatelessWidget {
               ],
             ),
           ),
-          Expanded(
-            child: Container(
-              margin: EdgeInsets.only(
-                top: Dimensions.height20,
-                left: Dimensions.width20,
-                right: Dimensions.width20,
-              ),
-              child: MediaQuery.removePadding(context: context,
-                removeTop: true,
-                child: ListView(
+          GetBuilder<CartController>(builder: (_cartController){
+            return _cartController.getCartHistoryList().length>0?
+            Expanded(
+              child: Container(
+                margin: EdgeInsets.only(
+                  top: Dimensions.height20,
+                  left: Dimensions.width20,
+                  right: Dimensions.width20,
+                ),
+                child: MediaQuery.removePadding(context: context,
+                  removeTop: true,
+                  child: ListView(
                     //NB LISTVIEW NEEDS HEIGHT PROPERTY FROM THE PARENT WIDGET.... IF NOT SO, USE EXPANDED WIDGET AS THE PARENT SINCE ITS HEIGHT IS DYNAMIC
                     // ListView is acting as column... we used ListView instead of ListView.builder because ListView can handle complex things
                     //MediaQuery.removePadding will remove top padding associated with ListView
@@ -106,15 +121,7 @@ class CartHistory extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               //BigText(text: getCartHistoryList[listCounter].time!),
-                              //processing dart code inside a for loop using I.E.F (immediately invoke functions)
-                              ((){
-                                //process date
-                                DateTime parseDate = DateFormat("yyyy-MM-dd HH:mm:ss").parse(getCartHistoryList[listCounter].time!);
-                                var inputDate = DateTime.parse(parseDate.toString());
-                                var outputFormat = DateFormat("MM/dd/yyyy hh:mm a");
-                                var outputDate = outputFormat.format(inputDate);
-                                return BigText(text: outputDate);
-                              }()),
+                              timeWidget(listCounter),
                               SizedBox(height: Dimensions.height10,),
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -172,7 +179,7 @@ class CartHistory extends StatelessWidget {
                                             //adding items back to the cart
                                             Get.find<CartController>().setItems = moreOrder;
                                             Get.find<CartController>().addToCartList();
-                                            
+
                                             //navigate to cart page
                                             Get.toNamed(RouteHelper.getCartPage());
                                           },
@@ -197,9 +204,19 @@ class CartHistory extends StatelessWidget {
                         )
                     ],
                   ),
+                ),
               ),
-            ),
-          ),
+            ) :
+            Container(
+              height: MediaQuery.of(context).size.height/1.5,
+                child: const Center(
+                  child: NoDataPage(
+                    text: "You did not buy anything so far",
+                    imgPath: "assets/images/empty_box.png",
+                  ),
+                )
+            );
+          }),
         ],
       ),
     );

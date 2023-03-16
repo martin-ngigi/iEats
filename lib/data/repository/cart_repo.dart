@@ -14,6 +14,7 @@ class CartRepo{
   List<String> cartHistory = [];
 
   void addToCartList(List<CartModel> cartList){
+    //clear cart history for testing purposes.
     //sharedPreferences.remove(AppConstants.CART_LIST);
     //sharedPreferences.remove(AppConstants.CART_HISTORY_LIST);
 
