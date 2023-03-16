@@ -1,5 +1,6 @@
 # i_eats
 
+- [Martin Backend API Source code : ](https://github.com/martin-ngigi/iEats_backend)
 - [YOUTUBE Tutorial](https://www.youtube.com/watch?v=7dAt-JMSCVQ&list=PL3nPgdhXQtHfgtMpD_0EvJm-8LP3uNfc-&index=1&ab_channel=dbestech)
 - [DBESTECH](https://www.dbestech.com/tutorials/flutter-food-delivery-app-e-commerce-for-ios-and-android)
 - [Youtube fans starter code](https://www.dbestech.com/food_delivery.zip)
@@ -19,3 +20,15 @@ ctrl + shift + F
 ```
 shift + F6
 ```
+
+## Install Laravel on Mac and Windows OS
+- [Link to installing laravel by dbesteck](https://www.dbestech.com/tutorials/how-to-install-laravel-on-mac-os)
+- There are four steps to do it.
+1. Install Homebrew
+2. Install PHP
+3. Install Composer
+4. Install Laravel
+<br>
+- or installation from the official documentation
+- [laravel installation](https://laravel.com/docs/10.x/installation)
+- []
