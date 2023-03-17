@@ -28,6 +28,7 @@ class _MainFoodPageState extends State<MainFoodPage> {
 
   @override
   Widget build(BuildContext context) {
+    //use RefreshIndicator for refreshing page
     return RefreshIndicator(
         child: Column(
           children: [
