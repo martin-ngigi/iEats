@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:i_eats/controllers/cart_controller.dart';
+import 'package:i_eats/pages/auth/sign_in_page.dart';
 import 'package:i_eats/pages/auth/sign_up_page.dart';
 import 'package:i_eats/pages/cart/cart_page.dart';
 import 'package:i_eats/pages/food/popular_food_detail.dart';
@@ -50,7 +51,7 @@ class MyApp extends StatelessWidget {
         return GetMaterialApp(
           debugShowCheckedModeBanner: false,
           title: 'Flutter Demo',
-          home: SignUpPage(),
+          home: SignInPage(),
           //home: SplashScreen(),
           //initialRoute: RouteHelper.getSplashPage(),
           //getPages: RouteHelper.routes,

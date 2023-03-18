@@ -3,6 +3,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:i_eats/pages/auth/sign_in_page.dart';
 import 'package:i_eats/utils/colors.dart';
 import 'package:i_eats/utils/dimensions.dart';
 import 'package:i_eats/widgets/app_text_field.dart';
@@ -104,12 +105,24 @@ class SignUpPage extends StatelessWidget {//used stateless widget because GET al
             //already have an account
             RichText(
                 text: TextSpan(
-                  recognizer:  TapGestureRecognizer()..onTap=()=>Get.back(), //make text clickable
+                  //recognizer:  TapGestureRecognizer()..onTap=()=>Get.back(), //make text clickable
                   text: "Have an account already ? ",
                   style: TextStyle(
                     color: Colors.grey[500],
                     fontSize: Dimensions.font20
                   ),
+                  children: [
+                      TextSpan(
+                        //navigate to SignInPage
+                        recognizer: TapGestureRecognizer()..onTap=()=>Get.to(()=>SignInPage(), transition: Transition.rightToLeft,),
+                        text: "Login",
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: Colors.green,
+                            fontSize: Dimensions.font20
+                        ),
+                      )
+                    ]
                 )
             ),
 
