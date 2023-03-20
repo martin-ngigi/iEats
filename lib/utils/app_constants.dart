@@ -4,11 +4,14 @@ class AppConstants{
 
   //http://mvs.bslmeiyu.com/api/v1/products/popular
   // static const String BASE_URL="http://mvs.bslmeiyu.com";
-  static const String BASE_URL="https://0981-105-163-2-39.in.ngrok.io";
+  static const String BASE_URL="https://0ea8-154-159-252-89.eu.ngrok.io";
   static const String POPULAR_PRODUCT_URI="/api/v1/products/popular";
   static const String RECOMMENDED_PRODUCT_URI="/api/v1/products/recommended";
   static const String DRINKS_URI="/api/v1/products/drinks";
   static const String UPLOAD_URL="/uploads/";
+
+  //auth endpoints
+  static const String REGISTRATION_URI = "/api/v1/auth/register";
 
   static const String TOKEN="my token.....";
   static const String CART_LIST="cart-list";
