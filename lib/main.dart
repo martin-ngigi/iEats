@@ -10,6 +10,8 @@ import 'package:i_eats/pages/food/popular_food_detail.dart';
 import 'package:i_eats/pages/food/recommended_food_detail.dart';
 import 'package:i_eats/pages/home/food_page_body.dart';
 import 'package:i_eats/pages/home/main_food_page.dart';
+import 'package:i_eats/pages/examples/my_animated_background.dart';
+import 'package:i_eats/pages/examples/simple_app_bar_popup_menu_button.dart';
 import 'package:i_eats/pages/splash/splash_page.dart';
 import 'package:i_eats/routes/route_helper.dart';
 import 'controllers/popular_product_controller.dart';
@@ -51,10 +53,10 @@ class MyApp extends StatelessWidget {
         return GetMaterialApp(
           debugShowCheckedModeBanner: false,
           title: 'Flutter Demo',
-          home: SignInPage(),
+          //home: SignInPage(),
           //home: SplashScreen(),
-          //initialRoute: RouteHelper.getSplashPage(),
-          //getPages: RouteHelper.routes,
+          initialRoute: RouteHelper.getSplashPage(),
+          getPages: RouteHelper.routes,
         );
       });
     });

@@ -13,6 +13,8 @@ import 'package:i_eats/utils/dimensions.dart';
 import 'package:i_eats/widgets/app_text_field.dart';
 import 'package:i_eats/widgets/big_text.dart';
 
+import '../../routes/route_helper.dart';
+
 class SignUpPage extends StatelessWidget {//used stateless widget because GET already has statefull.. but one should used stfull
   const SignUpPage({Key? key}) : super(key: key);
 
@@ -63,6 +65,8 @@ class SignUpPage extends StatelessWidget {//used stateless widget because GET al
         authController.registration(signupBody).then((status){
           if(status.isSuccess){
             print("---> [SignUpPage] Success registration");
+            //Navigate to Home Page
+            Get.toNamed(RouteHelper.getInitial());
           }
           else{
             showCustomSnackBar("---> [SignUpPage] Error :"+status.message);
@@ -109,6 +113,7 @@ class SignUpPage extends StatelessWidget {//used stateless widget because GET al
                hintText: "Password",
                icon: Icons.password_sharp,
                textType: TextInputType.visiblePassword,
+               isObscure: true, //hide password
              ),
              SizedBox(height: Dimensions.height20,),
 
