@@ -2,9 +2,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:i_eats/controllers/auth_controller.dart';
 import 'package:i_eats/controllers/cart_controller.dart';
 import 'package:i_eats/controllers/popular_product_controller.dart';
 import 'package:i_eats/controllers/recommended_product_controller.dart';
+import 'package:i_eats/pages/auth/sign_in_page.dart';
 import 'package:i_eats/pages/home/main_food_page.dart';
 import 'package:i_eats/utils/app_constants.dart';
 import 'package:i_eats/utils/colors.dart';
@@ -220,18 +222,27 @@ class CartPage extends StatelessWidget {
                   ],
                 ),
               ),
-              Container(
-                padding: EdgeInsets.only(top: Dimensions.height20, bottom: Dimensions.height20, left: Dimensions.width20, right: Dimensions.width20),
-                child: GestureDetector(
-                    onTap: (){
-                      // this will clear the current cart, and store to history cart
-                      print("Tapped");
-                      cartController.addToHistory();
-                    },
-                    child: BigText(text: "Check out ", color: Colors.white,)),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(Dimensions.radius20),
-                  color: AppColors.mainColor,
+              GestureDetector(
+              onTap: (){
+                // this will clear the current cart, and store to history cart
+                if(Get.find<AuthController>().userLoggedIn()){
+                  /// user is logged in
+                  print("----> [Cart Page] Tapped, user is logged in");
+                  cartController.addToHistory();
+                }
+                else{
+                  /// user is not logged in so redirect to sign in page
+                  print("----> [Cart Page] Tapped, user is NOT logged in");
+                  Get.toNamed(RouteHelper.getSignInPage());
+                }
+              },
+                child: Container(
+                  padding: EdgeInsets.only(top: Dimensions.height20, bottom: Dimensions.height20, left: Dimensions.width20, right: Dimensions.width20),
+                  child: BigText(text: "Check out ", color: Colors.white,),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(Dimensions.radius20),
+                    color: AppColors.mainColor,
+                  ),
                 ),
               )
             ],

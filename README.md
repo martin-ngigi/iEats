@@ -32,3 +32,23 @@ shift + F6
 - or installation from the official documentation
 - [laravel installation](https://laravel.com/docs/10.x/installation)
 - []
+
+## How to set the port of Chrome when running "flutter run -d chrome" for localStorage?
+```
+flutter run -d chrome --web-port 8080
+```
+
+# Access flutter localhost from real mobile browser
+- In your terminal, inside the project folder:
+```
+flutter build web
+```
+- Compiling lib/main.dart for the Web... 34.5s
+```
+cd build/web
+python3 -m http.server 8000
+```
+- Then in a new terminal tab:
+```
+ngrok http 8000
+```
