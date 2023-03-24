@@ -67,4 +67,9 @@ class AuthController extends GetxController implements GetxService{
      return authRepo.userLoggedIn();
   }
 
+  /// clear all data from shared preferences.
+  bool clearSharedData(){
+     return authRepo.clearSharedData();
+  }
+
 }

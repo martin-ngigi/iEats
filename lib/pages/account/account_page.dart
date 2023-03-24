@@ -1,6 +1,11 @@
 //stless
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:i_eats/controllers/auth_controller.dart';
+import 'package:i_eats/controllers/cart_controller.dart';
+import 'package:i_eats/routes/route_helper.dart';
 import 'package:i_eats/utils/colors.dart';
 import 'package:i_eats/utils/dimensions.dart';
 import 'package:i_eats/widgets/account_widget.dart';
@@ -113,67 +118,57 @@ class AccountPage extends StatelessWidget {
                           size: Dimensions.height10*5, //50
                         ),
                         bigText: BigText(
-                            text: "Martin"
+                            text: "Messages"
                         )
                     ),
                     SizedBox(height: Dimensions.height20,),
 
-                    //message
+                    //log out
+                    GestureDetector(
+                      onTap: (){
+                        if(Get.find<AuthController>().userLoggedIn()){ /// check if user is logged in first
+                          ///clear all shared preference data from the local storage.
+                          Get.find<AuthController>().clearSharedData();
+
+                          /// clear all cart data
+                          Get.find<CartController>().clear();
+                          Get.find<CartController>().clearCartHistory();
+
+                          /// Navigate to sign in page
+                          Get.offNamed(RouteHelper.getSignInPage());
+
+                          /// show snack bar
+                          Get.snackbar("Logged out", "You have logged out successfully");
+
+                        }
+
+                      },
+                      child: AccountWidget(
+                          appIcon: AppIcon(
+                            icon: Icons.power_settings_new_outlined,
+                            backgroundColor: Colors.redAccent,
+                            iconColor: Colors.white,
+                            iconSize: Dimensions.height10*5/2, //25
+                            size: Dimensions.height10*5, //50
+                          ),
+                          bigText: BigText(
+                              text: "Log Out"
+                          )
+                      ),
+                    ),
+                    SizedBox(height: Dimensions.height20,),
+
+                    //About
                     AccountWidget(
                         appIcon: AppIcon(
-                          icon: Icons.message_outlined,
-                          backgroundColor: Colors.redAccent,
+                          icon: Icons.info,
+                          backgroundColor: Colors.green,
                           iconColor: Colors.white,
                           iconSize: Dimensions.height10*5/2, //25
                           size: Dimensions.height10*5, //50
                         ),
                         bigText: BigText(
-                            text: "Martin"
-                        )
-                    ),
-                    SizedBox(height: Dimensions.height20,),
-
-                    //message
-                    AccountWidget(
-                        appIcon: AppIcon(
-                          icon: Icons.message_outlined,
-                          backgroundColor: Colors.redAccent,
-                          iconColor: Colors.white,
-                          iconSize: Dimensions.height10*5/2, //25
-                          size: Dimensions.height10*5, //50
-                        ),
-                        bigText: BigText(
-                            text: "Martin"
-                        )
-                    ),
-                    SizedBox(height: Dimensions.height20,),
-
-                    //message
-                    AccountWidget(
-                        appIcon: AppIcon(
-                          icon: Icons.message_outlined,
-                          backgroundColor: Colors.redAccent,
-                          iconColor: Colors.white,
-                          iconSize: Dimensions.height10*5/2, //25
-                          size: Dimensions.height10*5, //50
-                        ),
-                        bigText: BigText(
-                            text: "Martin"
-                        )
-                    ),
-                    SizedBox(height: Dimensions.height20,),
-
-                    //message
-                    AccountWidget(
-                        appIcon: AppIcon(
-                          icon: Icons.message_outlined,
-                          backgroundColor: Colors.redAccent,
-                          iconColor: Colors.white,
-                          iconSize: Dimensions.height10*5/2, //25
-                          size: Dimensions.height10*5, //50
-                        ),
-                        bigText: BigText(
-                            text: "Martin"
+                            text: "About"
                         )
                     ),
                     SizedBox(height: Dimensions.height20,),
