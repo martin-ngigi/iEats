@@ -52,3 +52,10 @@ python3 -m http.server 8000
 ```
 ngrok http 8000
 ```
+
+
+# Sample error message
+```
+Route [login] not defined.
+```
+- The above error is caused by errors in the headers...
