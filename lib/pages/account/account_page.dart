@@ -193,7 +193,50 @@ class AccountPage extends StatelessWidget {
                     : CustomLoader()
             )
             : Container(
-              child: Center( child: Text(" You must login."),),
+              child: Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Container(
+                      width: double.maxFinite,
+                      height: Dimensions.height20*8,
+                      margin: EdgeInsets.only(
+                          left: Dimensions.width20,
+                          right: Dimensions.width20,
+                      ),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(Dimensions.radius20),
+                        image: DecorationImage(
+                            image: AssetImage("assets/images/signintocontinue.png"),
+                        )
+                      ),
+                    ),
+                    GestureDetector(
+                      onTap: (){
+                        Get.toNamed(RouteHelper.getSignInPage());
+                      },
+                      child: Container(
+                        width: double.maxFinite,
+                        height: Dimensions.height20*5,
+                        margin: EdgeInsets.only(
+                            left: Dimensions.width20,
+                            right: Dimensions.width20,
+                        ),
+                        decoration: BoxDecoration(
+                          color: AppColors.mainColor,
+                          borderRadius: BorderRadius.circular(Dimensions.radius20),
+                        ),
+                        child: Center(
+                            child: BigText(text: "SignIn",
+                              color: Colors.white,
+                              size: Dimensions.font26,
+                            )
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
             );
       }),
     );
