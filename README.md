@@ -59,3 +59,55 @@ ngrok http 8000
 Route [login] not defined.
 ```
 - The above error is caused by errors in the headers...
+
+## Install latest Ruby version:
+- Use following documentation for Ruby installation... Ruby will be used to run iOS emulator.
+- [Ruby Installation](https://mac.install.guide/ruby/13.html)
+
+## Running on iOS
+- While inside The projectDirectory, navigate to iOS directory
+```
+cd ios
+```
+- Install Pod pod file [Should only be installed once, ignore if pod file already exists]
+```
+pod install
+```
+- Run the app on iOS device by running following commands:
+```
+flutter clean
+flutter run
+```
+
+## Obtaining package name:
+- iOS:
+- In iOS the package name is the bundle identifier in Info.plist. which is found in Runner.xcodeproj/project.pbxproj:
+
+      PRODUCT_BUNDLE_IDENTIFIER = com.example.iEats;
+- place the GoogleService-Info.plist  inside iOS/Runner <br>
+- Android:
+- In Android the package name is in the AndroidManifest:
+
+      <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+       ...
+       package="com.example.i_eats"> 
+- place the google-service.json  inside android/app <br>
+
+## Obtaining google maps API Key
+1. URLS
+- [Tutorial link to obtaining Google Map API Key](https://www.youtube.com/watch?v=HCUZ91NVnaM)
+- [Open Google cloud console](https://console.cloud.google.com/)
+- [iEats Dashboard](https://console.cloud.google.com/home/dashboard?project=ieats-381804)
+- [DBESTECH documentation](https://www.dbestech.com/tutorials/generate-google-map-api-key-android-ios-integrate-in-flutter-amp-react-native)
+- 
+
+## Generating SHA-1 for android:
+- For Linux or macOS:
+```
+keytool -list -v -keystore ~/.android/debug.keystore -alias androiddebugkey -storepass android -keypass android
+```
+-For Windows:
+```
+keytool -list -v -keystore "%USERPROFILE%\.android\debug.keystore" -alias androiddebugkey -storepass android -keypass android
+```
+

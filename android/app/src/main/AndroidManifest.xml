@@ -1,9 +1,21 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.i_eats">
-   <application
+
+    <!-- TODO: Add your Permissions here -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
+    <application
         android:label="i_eats"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
+
+       <!-- TODO: Add your API key here -->
+       <!-- Google maps api key-->
+       <!-- API key is obtained from : https://console.cloud.google.com/google/maps-apis/credentials?project=ieats-381804-->
+       <meta-data android:name="com.google.android.geo.API_KEY"
+           android:value="AIzaSyB9txBevFfFt2ENt4pvW8-Ch6PWfyxHsNo"/> ,,
+
         <activity
             android:name=".MainActivity"
             android:exported="true"

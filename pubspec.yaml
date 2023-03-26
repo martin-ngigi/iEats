@@ -44,6 +44,11 @@ dependencies:
   animated_background: ^2.0.0
   sizer: ^2.0.15
 
+#  #googlr maps [NB : INSTALL PACKAGE AT A TIME... i.e. add one, then press pub get]
+  google_maps_flutter: ^2.2.5
+  geocoding: ^2.1.0
+  geolocator: ^9.0.2
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
