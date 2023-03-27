@@ -6,6 +6,7 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:i_eats/base/custom_loader.dart';
 import 'package:i_eats/controllers/auth_controller.dart';
 import 'package:i_eats/controllers/cart_controller.dart';
+import 'package:i_eats/controllers/location_controller.dart';
 import 'package:i_eats/controllers/user_controller.dart';
 import 'package:i_eats/routes/route_helper.dart';
 import 'package:i_eats/utils/colors.dart';
@@ -104,18 +105,48 @@ class AccountPage extends StatelessWidget {
                           SizedBox(height: Dimensions.height20,),
 
                           //address
-                          AccountWidget(
-                              appIcon: AppIcon(
-                                icon: Icons.location_on,
-                                backgroundColor: AppColors.yellowColor,
-                                iconColor: Colors.white,
-                                iconSize: Dimensions.height10*5/2, //25
-                                size: Dimensions.height10*5, //50
-                              ),
-                              bigText: BigText(
-                                  text: "Nairobi, Kenya"
-                              )
-                          ),
+                          GetBuilder<LocationController>(builder: (locationController){
+                             if(_userLoggedIn && locationController.addressList.isEmpty){
+                              return GestureDetector(
+                                onTap: (){
+                                  //navigate to address page
+                                  Get.offNamed(RouteHelper.getAddressPage());
+                                },
+                                child: AccountWidget(
+                                    appIcon: AppIcon(
+                                      icon: Icons.location_on,
+                                      backgroundColor: AppColors.yellowColor,
+                                      iconColor: Colors.white,
+                                      iconSize: Dimensions.height10*5/2, //25
+                                      size: Dimensions.height10*5, //50
+                                    ),
+                                    bigText: BigText(
+                                        text: "Fill in your address"
+                                    )
+                                ),
+                              );
+                            }
+                             else{
+                               return GestureDetector(
+                                 onTap: (){
+                                   //navigate to address page
+                                   Get.offNamed(RouteHelper.getAddressPage());
+                                 },
+                                 child: AccountWidget(
+                                     appIcon: AppIcon(
+                                       icon: Icons.location_on,
+                                       backgroundColor: AppColors.yellowColor,
+                                       iconColor: Colors.white,
+                                       iconSize: Dimensions.height10*5/2, //25
+                                       size: Dimensions.height10*5, //50
+                                     ),
+                                     bigText: BigText(
+                                         text: "Your address"
+                                     )
+                                 ),
+                               );
+                             }
+                          }),
                           SizedBox(height: Dimensions.height20,),
 
                           //message

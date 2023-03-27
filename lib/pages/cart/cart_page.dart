@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:i_eats/controllers/auth_controller.dart';
 import 'package:i_eats/controllers/cart_controller.dart';
+import 'package:i_eats/controllers/location_controller.dart';
 import 'package:i_eats/controllers/popular_product_controller.dart';
 import 'package:i_eats/controllers/recommended_product_controller.dart';
 import 'package:i_eats/pages/auth/sign_in_page.dart';
@@ -228,7 +229,18 @@ class CartPage extends StatelessWidget {
                 if(Get.find<AuthController>().userLoggedIn()){
                   /// user is logged in
                   print("----> [Cart Page] Tapped, user is logged in");
-                  cartController.addToHistory();
+                  //cartController.addToHistory();
+
+                  print("Address List is ${Get.find<LocationController>().addressList}");
+                  // user addressList is empty
+                  if(Get.find<LocationController>().addressList.isEmpty){
+                    //Navigate to Address Page
+                    Get.toNamed(RouteHelper.getAddressPage());
+                  }
+                  else{
+                    /// navigate to home page
+                    Get.offNamed(RouteHelper.getInitial());
+                  }
                 }
                 else{
                   /// user is not logged in so redirect to sign in page

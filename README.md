@@ -99,7 +99,7 @@ flutter run
 - [Open Google cloud console](https://console.cloud.google.com/)
 - [iEats Dashboard](https://console.cloud.google.com/home/dashboard?project=ieats-381804)
 - [DBESTECH documentation](https://www.dbestech.com/tutorials/generate-google-map-api-key-android-ios-integrate-in-flutter-amp-react-native)
-- 
+- Enable Geocoding API, Geolocation API, Maps SDK for Android, Maps SDK for iOS
 
 ## Generating SHA-1 for android:
 - For Linux or macOS:

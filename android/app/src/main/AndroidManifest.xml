@@ -13,8 +13,12 @@
        <!-- TODO: Add your API key here -->
        <!-- Google maps api key-->
        <!-- API key is obtained from : https://console.cloud.google.com/google/maps-apis/credentials?project=ieats-381804-->
-       <meta-data android:name="com.google.android.geo.API_KEY"
-           android:value="AIzaSyB9txBevFfFt2ENt4pvW8-Ch6PWfyxHsNo"/> ,,
+       <!-- API KEY  for android only-->
+        <!--<meta-data android:name="com.google.android.geo.API_KEY"
+           android:value="AIzaSyB9txBevFfFt2ENt4pvW8-Ch6PWfyxHsNo"/> -->
+        <!-- API KEY for all devices-->
+         <meta-data android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyDIcs-cXjaLkxO4FHUXdAJsUSXG4UjuvWE"/>
 
         <activity
             android:name=".MainActivity"

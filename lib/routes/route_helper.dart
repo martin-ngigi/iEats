@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import 'package:get/get_navigation/src/routes/get_route.dart';
+import 'package:i_eats/pages/address/add_address_page.dart';
 import 'package:i_eats/pages/auth/sign_in_page.dart';
 import 'package:i_eats/pages/food/popular_food_detail.dart';
 import 'package:i_eats/pages/home/main_food_page.dart';
@@ -16,6 +17,7 @@ class RouteHelper{
   static const String recommendedFood ="/recommended-food";
   static const String cartPage ="/cart-page";
   static const String signIn ="/sign-in";
+  static const String addAddress ="/add-address";
 
   static String getSplashPage() =>'$splashPage';
   static String getInitial() =>'$initial';
@@ -23,6 +25,7 @@ class RouteHelper{
   static String getRecommendedFood(int pageId, String page) =>'$recommendedFood?pageId=$pageId&page=$page';// passing data to next page
   static String getCartPage() =>'$cartPage';
   static String getSignInPage() =>'$signIn';
+  static String getAddressPage() =>'$addAddress';
 
   static List<GetPage> routes = [
 
@@ -68,6 +71,14 @@ class RouteHelper{
     //cart page
     GetPage(name: cartPage, page: (){
       return CartPage();
+    },
+      transition: Transition.rightToLeft,
+      transitionDuration:  Duration(milliseconds: 500), // half a second
+    ),
+
+    //address page
+    GetPage(name: addAddress, page: (){
+      return AddAddressPage();
     },
       transition: Transition.rightToLeft,
       transitionDuration:  Duration(milliseconds: 500), // half a second

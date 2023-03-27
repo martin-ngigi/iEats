@@ -15,8 +15,10 @@ import GoogleMaps
 
     /**
     * Add This google map key here
+    API KEY FOR iOS Only is AIzaSyDnyW47ZnMaCi0sNgUfAbe4lWIZmTh7O1A
+    AIzaSyDIcs-cXjaLkxO4FHUXdAJsUSXG4UjuvWE
     */
-    GMSServices.provideAPIKey("AIzaSyDnyW47ZnMaCi0sNgUfAbe4lWIZmTh7O1A") // Key obtained from https://console.cloud.google.com/google/maps-apis/credentials?project=ieats-381804
+   GMSServices.provideAPIKey("AIzaSyDIcs-cXjaLkxO4FHUXdAJsUSXG4UjuvWE") // Key obtained from https://console.cloud.google.com/google/maps-apis/credentials?project=ieats-381804
 
     return super.application(application, didFinishLaunchingWithOptions: launchOptions)
   }

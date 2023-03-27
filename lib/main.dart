@@ -19,7 +19,7 @@ import 'package:sizer/sizer.dart';
 import 'controllers/popular_product_controller.dart';
 import 'controllers/recommended_product_controller.dart';
 import 'helper/dependencies.dart' as dep;
-import 'main_google_maps.dart';
+import 'pages/examples/main_google_maps.dart';
 
 Future<void> main() async {
   //wait till all dependencies are loaded
@@ -58,8 +58,7 @@ class MyApp extends StatelessWidget {
           title: 'Flutter Demo',
           //home: SignInPage(),
           //home: SplashScreen(),
-          //initialRoute: RouteHelper.getSplashPage(),
-          home: MainGoogleMaps(),
+          initialRoute: RouteHelper.getSplashPage(),
           getPages: RouteHelper.routes,
         );
       });

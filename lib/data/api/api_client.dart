@@ -44,10 +44,10 @@ class ApiClient extends GetConnect implements GetxService{
 
   //sending data to the server
   Future<Response> postData(String uri, dynamic body) async {
-    print("1. "+body.toString());
+    print("1. [ApiClient]"+body.toString());
     try{
       Response response = await post(uri, body, headers: _mainHeaders);
-      print("1. "+response.toString());
+      print("2. [ApiClient] posting. "+response.body.toString());
       return response;
     }
     catch(e){
