@@ -15,6 +15,7 @@ import 'package:i_eats/pages/examples/my_animated_background.dart';
 import 'package:i_eats/pages/examples/simple_app_bar_popup_menu_button.dart';
 import 'package:i_eats/pages/splash/splash_page.dart';
 import 'package:i_eats/routes/route_helper.dart';
+import 'package:i_eats/utils/colors.dart';
 import 'package:sizer/sizer.dart';
 import 'controllers/popular_product_controller.dart';
 import 'controllers/recommended_product_controller.dart';
@@ -60,6 +61,10 @@ class MyApp extends StatelessWidget {
           //home: SplashScreen(),
           initialRoute: RouteHelper.getSplashPage(),
           getPages: RouteHelper.routes,
+          theme: ThemeData(
+            primaryColor: AppColors.mainColor,
+            fontFamily: "Lato"
+          ),
         );
       });
     });

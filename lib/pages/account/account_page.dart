@@ -25,6 +25,17 @@ class AccountPage extends StatelessWidget {
     if(_userLoggedIn){
       Get.find<UserController>().getUserInfo();
       print("-------[AccountPage] User has logged in");
+
+      /// solve getting address list bug
+      if(Get.find<LocationController>().addressList.isEmpty) {
+        try{
+          Get.find<LocationController>().getAddressList();
+        }
+        catch(e){
+          Get.snackbar("Error", "$e");
+          throw e;
+        }
+      }
     }
     return Scaffold(
       appBar: AppBar(
@@ -175,12 +186,19 @@ class AccountPage extends StatelessWidget {
                                 Get.find<CartController>().clear();
                                 Get.find<CartController>().clearCartHistory();
 
+                                /// clear all address list
+                                Get.find<LocationController>().clearAddressList();
+
                                 /// Navigate to sign in page
                                 Get.offNamed(RouteHelper.getSignInPage());
 
                                 /// show snack bar
                                 Get.snackbar("Logged out", "You have logged out successfully");
 
+                              }
+                              else{
+                                /// Navigate to sign in page
+                                Get.offNamed(RouteHelper.getSignInPage());
                               }
 
                             },

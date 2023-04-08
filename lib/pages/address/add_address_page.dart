@@ -8,6 +8,8 @@ import 'package:i_eats/controllers/auth_controller.dart';
 import 'package:i_eats/controllers/location_controller.dart';
 import 'package:i_eats/controllers/user_controller.dart';
 import 'package:i_eats/models/address_model.dart';
+import 'package:i_eats/pages/address/pick_address_map.dart';
+import 'package:i_eats/routes/route_helper.dart';
 import 'package:i_eats/utils/colors.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:i_eats/utils/dimensions.dart';
@@ -48,7 +50,19 @@ class _AddAddressPageState extends State<AddAddressPage> {
 
     /// user already has address
     if(Get.find<LocationController>().addressList.isNotEmpty){
+      /**
+      bug fix:
+          User may have logged in to a new device
+       */
+      if(Get.find<LocationController>().getUserAddressFromLocalStorage() == ""){
+        Get.find<LocationController>().saveUserAddress(
+          Get.find<LocationController>().addressList.last
+        );
+      }
+
+      /// get the address
       Get.find<LocationController>().getUserAddress();
+
       _cameraPosition = CameraPosition(
           target:LatLng(
             double.parse(Get.find<LocationController>().getAddress["latitude"]),
@@ -60,6 +74,12 @@ class _AddAddressPageState extends State<AddAddressPage> {
         double.parse(Get.find<LocationController>().getAddress["latitude"]),
         double.parse(Get.find<LocationController>().getAddress["longitude"]),
       );
+
+      print("-------> Longitude is : ${Get.find<LocationController>().getAddress["latitude"]}");
+      print("--------> Latitude is : ${Get.find<LocationController>().getAddress["longitude"]}");
+    }
+    else{
+      print("--------->No address found");
     }
   }
 
@@ -111,6 +131,15 @@ class _AddAddressPageState extends State<AddAddressPage> {
                   child: Stack(
                     children: [
                       GoogleMap(
+                        onTap: (latlag){
+                          Get.toNamed(RouteHelper.getPickAddressPage(),
+                          arguments: PickAddressMap(
+                            fromSignup: false,
+                            fromAddress: true, // from address page
+                            googleMapController: locationController.mapController,
+                          )
+                          );
+                        },
                         initialCameraPosition: CameraPosition(
                             target: _initialPosition,
                             zoom: 17
@@ -127,6 +156,9 @@ class _AddAddressPageState extends State<AddAddressPage> {
                         onCameraMove: ((position) => _cameraPosition=position),
                         onMapCreated: (GoogleMapController controller){
                           locationController.setMapController(controller);
+                          if(Get.find<LocationController>().addressList.isEmpty){
+                            //locationController.getCurrentLocation(true, mapController: controller);
+                          }
                         },
                       ),
                     ],
@@ -232,8 +264,8 @@ class _AddAddressPageState extends State<AddAddressPage> {
                       );
                       locationController.addAddress(_addressModel).then((response){
                         if(response.isSuccess){
-                          /// navigate to previous page
-                          Get.back();
+                          /// navigate to home page
+                          Get.toNamed(RouteHelper.getInitial());
                           ///show a snackbar with a message
                           Get.snackbar("Address", "Address added successfully.");
                         }

@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
 import 'package:get/get_navigation/src/routes/get_route.dart';
 import 'package:i_eats/pages/address/add_address_page.dart';
+import 'package:i_eats/pages/address/pick_address_map.dart';
 import 'package:i_eats/pages/auth/sign_in_page.dart';
 import 'package:i_eats/pages/food/popular_food_detail.dart';
 import 'package:i_eats/pages/home/main_food_page.dart';
@@ -18,6 +19,7 @@ class RouteHelper{
   static const String cartPage ="/cart-page";
   static const String signIn ="/sign-in";
   static const String addAddress ="/add-address";
+  static const String pickAddressMap ="/pick-address";
 
   static String getSplashPage() =>'$splashPage';
   static String getInitial() =>'$initial';
@@ -26,6 +28,7 @@ class RouteHelper{
   static String getCartPage() =>'$cartPage';
   static String getSignInPage() =>'$signIn';
   static String getAddressPage() =>'$addAddress';
+  static String getPickAddressPage() =>'$pickAddressMap';
 
   static List<GetPage> routes = [
 
@@ -79,6 +82,16 @@ class RouteHelper{
     //address page
     GetPage(name: addAddress, page: (){
       return AddAddressPage();
+    },
+      transition: Transition.rightToLeft,
+      transitionDuration:  Duration(milliseconds: 500), // half a second
+    ),
+
+    //pick address page
+    GetPage(name: pickAddressMap, page: (){
+      /// passing a widget of screen.
+      PickAddressMap _pickAddress = Get.arguments;
+      return _pickAddress;
     },
       transition: Transition.rightToLeft,
       transitionDuration:  Duration(milliseconds: 500), // half a second

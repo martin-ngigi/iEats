@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:math';
 
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -27,7 +28,7 @@ class LocationController extends GetxController implements GetxService{
   List<AddressModel> _addressList = [];
   List<AddressModel> get addressList => _addressList;
 
-  late List<AddressModel> _allAddressList = [];
+  late List<AddressModel> _allAddressList; /// NO []
   List<AddressModel> get allAddressList => _allAddressList;
 
   final List<String> _addressTypeList = ["home", "office", "others"];
@@ -39,12 +40,24 @@ class LocationController extends GetxController implements GetxService{
   late GoogleMapController _mapController;
   GoogleMapController get mapController => _mapController;
 
-  bool updateAddressData = true;
+  bool _updateAddressData = true;
   bool _changeAddress =true;
 
   bool get loading =>_loading;
   Position get position => _position;
   Position get pickPosition => _pickPosition;
+
+  /// used for service zone
+  bool _isLoading = false;
+  bool get isLoading => _isLoading;
+
+  ///check whether the user is in service zone or not.
+  bool _inZone = false;
+  bool get inZone => _inZone;
+
+  /// for showing and hiding the button as map loads.
+  bool _buttonDisabled = true;
+  bool get buttonDisabled => _buttonDisabled;
 
 
   void setMapController(GoogleMapController mapController){
@@ -52,7 +65,7 @@ class LocationController extends GetxController implements GetxService{
   }
 
   void updatePosition(CameraPosition position, bool fromAddress) async {
-    if(updateAddressData){
+    if(_updateAddressData){
       _loading =true;
       update(); // update UI... Same as setState(){}
 
@@ -82,6 +95,17 @@ class LocationController extends GetxController implements GetxService{
           );
         }
 
+        ResponseModel _responseModel = await getZone(
+            position.target.latitude.toString(),
+            position.target.longitude.toString(),
+            false
+        );
+
+        /**
+         *. if button value is false, we are in the service area
+         */
+        _buttonDisabled = ! _responseModel.isSuccess;
+
         if(_changeAddress){
           String _address = await getAddressFromGeocode(
             LatLng(
@@ -99,6 +123,11 @@ class LocationController extends GetxController implements GetxService{
         print("-----> [LocationController] Location error: $e");
         //throw e;
       }
+      _loading =false;
+      update();
+    }
+    else{
+      _updateAddressData = true;
     }
   }
 
@@ -181,6 +210,7 @@ class LocationController extends GetxController implements GetxService{
       _addressList = []; // make it empty
       _allAddressList = []; //make empty
 
+      /// Get all address from the body and add them to the list
       response.body.forEach((address){
         _addressList.add(AddressModel.fromJson(address));
         _allAddressList.add(AddressModel.fromJson(address));
@@ -198,5 +228,64 @@ class LocationController extends GetxController implements GetxService{
     /// convert object to json
     String userAddress = jsonEncode(addressModel.toJson());
     return await locationRepo.saveUserAddress(userAddress);
+  }
+
+  /// clear everything from the memory
+  void clearAddressList(){
+    _addressList = [];
+    _allAddressList = [];
+    update();
+  }
+
+  String getUserAddressFromLocalStorage() {
+    return locationRepo.getUserAddress();
+  }
+
+  void setAddressData(){
+    _position = _pickPosition;
+    _placemark = _pickPlacemark;
+    _updateAddressData = false;
+    update();
+  }
+
+  Future<ResponseModel> getZone(String lat, String lng, bool makerLoad) async {
+    late ResponseModel _responseModel;
+
+    if(makerLoad){
+      ///_loading will be triggered from other places
+      _loading = true;
+    }
+    else{
+      _isLoading = true;
+    }
+    update();
+    Response response = await locationRepo.getZone(lat, lng);
+    if(response.statusCode==200){
+      /// success response
+      _inZone =true;
+      _responseModel = ResponseModel(true, "Success Zone Response: "+response.body["zone_id"].toString());
+    }
+    else{
+      /// error
+      _inZone =false;
+      _responseModel = ResponseModel(true, "Error Zone Response: "+response.statusText!);
+    }
+
+    if(makerLoad){
+      ///_loading will be triggered from other places
+      _loading = false;
+    }
+    else{
+      _isLoading = false;
+    }
+    /**
+     * For debugging
+     */
+     print("------>  [LocationController] zone response code is ${response.statusCode}");
+     print("------>  [LocationController] zone response  ${response.body.toString()}");
+    update();
+
+
+    return _responseModel;
   }
 }
