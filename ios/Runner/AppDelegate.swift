@@ -15,8 +15,8 @@ import GoogleMaps
 
     /**
     * Add This google map key here
-    API KEY FOR iOS Only is AIzaSyDnyW47ZnMaCi0sNgUfAbe4lWIZmTh7O1A
-    AIzaSyDIcs-cXjaLkxO4FHUXdAJsUSXG4UjuvWE
+    API KEY FOR iOS Only is: AIzaSyDnyW47ZnMaCi0sNgUfAbe4lWIZmTh7O1A
+    API KEY FOR  all devices is: AIzaSyDIcs-cXjaLkxO4FHUXdAJsUSXG4UjuvWE
     */
    GMSServices.provideAPIKey("AIzaSyDIcs-cXjaLkxO4FHUXdAJsUSXG4UjuvWE") // Key obtained from https://console.cloud.google.com/google/maps-apis/credentials?project=ieats-381804
 

@@ -35,6 +35,7 @@ class ApiClient extends GetConnect implements GetxService{
           uri,
         headers: headers??_mainHeaders // if headers is empty, then use _mainHeaders
       ); // "get(uri)" is the HTTP GET request
+      print("-------->[ApiClient] Response Body:  ${response.body.toString()}");
       return response;
     }
     catch(e){

@@ -33,6 +33,13 @@ shift + F6
 - [laravel installation](https://laravel.com/docs/10.x/installation)
 - []
 
+## API KEYs
+- Google map Android key: AIzaSyB9txBevFfFt2ENt4pvW8-Ch6PWfyxHsNo
+- Google map iOS key: AIzaSyDnyW47ZnMaCi0sNgUfAbe4lWIZmTh7O1A
+- Google map All devices key: AIzaSyDIcs-cXjaLkxO4FHUXdAJsUSXG4UjuvWE
+- DBESTECH Google map ;-) key: AIzaSyCMESvjp3G5FtPnukZ28_GVOuFSvEhSS9c
+
+
 ## How to set the port of Chrome when running "flutter run -d chrome" for localStorage?
 ```
 flutter run -d chrome --web-port 8080

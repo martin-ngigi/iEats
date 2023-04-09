@@ -4,6 +4,7 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:get/get.dart';
 import 'package:i_eats/base/custom_button.dart';
 import 'package:i_eats/controllers/location_controller.dart';
+import 'package:i_eats/pages/address/widgets/search_location_dialog_page.dart';
 import 'package:i_eats/routes/route_helper.dart';
 import 'package:i_eats/utils/colors.dart';
 import 'package:i_eats/utils/dimensions.dart';
@@ -72,6 +73,13 @@ class _PickAddressMapState extends State<PickAddressMap> {
                     onCameraIdle: (){
                       Get.find<LocationController>().updatePosition(_cameraPosition, false);
                     },
+
+                    onMapCreated: (GoogleMapController mapController){
+                      _mapController = mapController;
+                      if(!widget.fromAddress){
+                        /// -------------> MISSING CODE.
+                      }
+                    },
                   ),
 
                   /// Pick Image
@@ -86,40 +94,48 @@ class _PickAddressMapState extends State<PickAddressMap> {
 
                   ),
 
-                  /// Search bar
+                  /// Search bar for showing and selecting  and selecting address
                   Positioned(
                     top: Dimensions.height45,
                       left: Dimensions.width20,
                       right: Dimensions.width20,
-                      child: Container(
-                        padding: EdgeInsets.symmetric(horizontal: Dimensions.width10),
-                        height: 50,
-                        decoration: BoxDecoration(
-                          color: AppColors.mainColor,
-                          borderRadius: BorderRadius.circular(Dimensions.radius20/2),
-                        ),
-                        child: Row(
-                          children: [
-                            /// location icon
-                            Icon(
-                              Icons.location_on,
-                              size: 25,
-                              color: AppColors.yellowColor,
-                            ),
+                      child: InkWell(
+                        onTap: () => Get.dialog(LocationDialogue(mapController: _mapController)),
+                        child: Container(
+                          padding: EdgeInsets.symmetric(horizontal: Dimensions.width10),
+                          height: 50,
+                          decoration: BoxDecoration(
+                            color: AppColors.mainColor,
+                            borderRadius: BorderRadius.circular(Dimensions.radius20/2),
+                          ),
+                          child: Row(
+                            children: [
+                              /// location icon
+                              Icon(
+                                Icons.location_on,
+                                size: 25,
+                                color: AppColors.yellowColor,
+                              ),
 
-                            /// address text
-                            Expanded(
-                                child: Text(
-                                  "${locationController.pickPlacemark.name??""}", // if empty, show ""
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: Dimensions.font16
-                                  ),
-                                  maxLines: 1,
-                                  overflow: TextOverflow.ellipsis,
-                                )
-                            ),
-                          ],
+                              ///address text
+                              Expanded(
+                                  child: Text(
+                                    "${locationController.pickPlacemark.name??""}", // if empty, show ""
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: Dimensions.font16
+                                    ),
+                                    maxLines: 1,
+                                    overflow: TextOverflow.ellipsis,
+                                  )
+                              ),
+
+                              SizedBox(width: Dimensions.width10,),
+
+                              /// Search icon
+                              Icon(Icons.search, size: 25, color: AppColors.yellowColor,),
+                            ],
+                          ),
                         ),
                       )
                   ),

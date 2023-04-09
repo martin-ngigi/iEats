@@ -49,6 +49,12 @@ dependencies:
   geocoding: ^2.1.0
   geolocator: ^9.0.2
 
+  #For autofilling in the dialog box
+  flutter_typeahead: ^3.1.3 #NB: USE 3.1.3
+  # For google services
+  google_maps_flutter_web: ^0.3.0+2 # NB USE 0.3.0+2
+  flutter_google_places: ^0.3.0 #NB USE 0.3.0
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
