@@ -54,6 +54,7 @@ dependencies:
   # For google services
   google_maps_flutter_web: ^0.3.0+2 # NB USE 0.3.0+2
   flutter_google_places: ^0.3.0 #NB USE 0.3.0
+  webview_flutter: ^2.0.9 # NB USE 2.0.9
 
 dev_dependencies:
   flutter_test:

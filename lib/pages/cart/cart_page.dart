@@ -2,11 +2,15 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:i_eats/base/show_custom_snackbar.dart';
 import 'package:i_eats/controllers/auth_controller.dart';
 import 'package:i_eats/controllers/cart_controller.dart';
 import 'package:i_eats/controllers/location_controller.dart';
+import 'package:i_eats/controllers/order_controller.dart';
 import 'package:i_eats/controllers/popular_product_controller.dart';
 import 'package:i_eats/controllers/recommended_product_controller.dart';
+import 'package:i_eats/controllers/user_controller.dart';
+import 'package:i_eats/models/place_order_model.dart';
 import 'package:i_eats/pages/auth/sign_in_page.dart';
 import 'package:i_eats/pages/home/main_food_page.dart';
 import 'package:i_eats/utils/app_constants.dart';
@@ -239,7 +243,33 @@ class CartPage extends StatelessWidget {
                   }
                   else{
                     /// navigate to home page
-                    Get.offNamed(RouteHelper.getInitial());
+                    //Get.offNamed(RouteHelper.getPaymentPage("100003", Get.find<UserController>().userModel!.id!));
+                    //Get.offNamed(RouteHelper.getPaymentPage("100003", 73));
+
+                    var location = Get.find<LocationController>().getUserAddress();
+                    var cart = Get.find<CartController>().getItems;
+                    var user = Get.find<UserController>().userModel;
+
+                    PlaceOrderBody placeOrder = PlaceOrderBody(
+                        cart: cart,
+                        orderAmount: 100.0,
+                        distance: 10.0,
+                        scheduleAt: '',
+                        orderNote: 'All About great things',
+                        address: location.address,
+                        latitude: location.latitude,
+                        longitude: location.longitude,
+                        contactPersonName: user.name,
+                        contactPersonNumber: user.phone
+                    );
+
+
+                    /**
+                     * 1. Place  an Order by calling placeOrder() method in OrderController
+                     * 2. if placeOrder() is successful, it will call _callBack function
+                     */
+                    Get.find<OrderController>().placeOrder(placeOrder, _callBack);
+
                   }
                 }
                 else{
@@ -262,5 +292,14 @@ class CartPage extends StatelessWidget {
         );
       }),
     );
+  }
+
+  void _callBack(bool isSuccess, String message, String orderID){
+    if(isSuccess){
+      Get.offNamed(RouteHelper.getPaymentPage(orderID, Get.find<UserController>().userModel.id));
+    }
+    else{
+      showCustomSnackBar(message);
+    }
   }
 }

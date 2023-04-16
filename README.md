@@ -9,6 +9,10 @@
 - [E-commerce app documentation](https://www.dbestech.com/tutorials/flutter-food-delivery-e-commerce-app-documentation)
 - [Json to Dart conversion](https://javiercbk.github.io/json_to_dart/)
 - [Popular products endpoint](http://mvs.bslmeiyu.com/api/v1/products/popular)
+- [PayPal Integration Documentation](https://www.dbestech.com/tutorials/flutter-paypal-payment-integration-with-webview)
+- [Paypal Sandbox account | Secret ID and Client ID create for app development testing  youtube tutorial](https://www.youtube.com/watch?v=YtVHW_b6s2c)
+- [Paypal tools/dashboard](https://developer.paypal.com/tools/ || https://www.paypal.com/mep/dashboard)
+- [Paypal rest APIs](https://developer.paypal.com/api/rest/)
 
 ## Short-Cuts
 - To find a certain key word globally, press:
@@ -118,3 +122,17 @@ keytool -list -v -keystore ~/.android/debug.keystore -alias androiddebugkey -sto
 keytool -list -v -keystore "%USERPROFILE%\.android\debug.keystore" -alias androiddebugkey -storepass android -keypass android
 ```
 
+## Paypal integration:
+- Create a business paypal account
+- [PayPal Integration Documentation](https://www.dbestech.com/tutorials/flutter-paypal-payment-integration-with-webview)
+- [Sandbox > Accounts page](https://developer.paypal.com/developer/accounts)
+- Android apk  <br>
+paypal: ab@dbestech.com pass: 12345678 <br>
+You may use the above paypal account for testing payment. It's a sandbox account. This apk does not contain all the features of commercial license.  <br>
+- [Paypal developer account/ create sandbox account](https://developer.paypal.com/developer/accounts)
+
+<br><br>
+- My Email: martinwainaina002@gmail.com
+- Paypal Sandbox Account: sb-wllwa15159589@business.example.com
+- Paypal Client ID: Ab8dCglfrtHWB0gOxJvMdw5RqvG3X5EC2QrH9VRKKa-_wXldtZjIgRwejtqr8Kz-eB2CcljdqpmdkzWr
+- Secret key: EIL3gdug3RgJvVWhD-e1NeXO_Yt-i6BljZmIenzhoXN9mngwY2o0022MVwu7JdRh_7PUDeUk4pLjZaJC 
