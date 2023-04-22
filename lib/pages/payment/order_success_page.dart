@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:i_eats/base/custom_button.dart';
 import 'package:i_eats/routes/route_helper.dart';
 import 'package:get/get.dart';
+import 'package:i_eats/utils/colors.dart';
 
 import '../../utils/dimensions.dart';
 
@@ -28,12 +29,12 @@ class OrderSuccessPage extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Image.asset(
-                status == 1 ? "assets/image/checked.png" :
-                      "assets/image/warning.png" ,
-                width: 100,
-                height: 100,
+              Icon(
+                status == 1 ? Icons.check_circle_outlined : Icons.warning_amber_outlined,
+                size: 100,
+                color: AppColors.mainColor,
               ),
+              SizedBox(height: 30,),
 
               SizedBox(height: Dimensions.height45,),
 
@@ -41,14 +42,14 @@ class OrderSuccessPage extends StatelessWidget {
                 status == 1 ? "You placed the order successfully":
                       "Your order failed",
                 style: TextStyle(
-                  fontSize: Dimensions.font26,
+                  fontSize: Dimensions.font20,
                 ),
               ),
 
               SizedBox(height: Dimensions.height20,),
 
               Padding(
-                padding: EdgeInsets.symmetric(horizontal: Dimensions.height20, vertical: Dimensions.height20),
+                padding: EdgeInsets.symmetric(horizontal: Dimensions.height20, vertical: Dimensions.height10),
                 child: Text(
                   status == 1? "Success Order" : "Order failed",
                   style: TextStyle(
@@ -59,10 +60,10 @@ class OrderSuccessPage extends StatelessWidget {
                 ),
               ),
 
-              SizedBox(height: 30),
+              SizedBox(height: Dimensions.height10),
 
               Padding(
-                padding: EdgeInsets.all(Dimensions.height20),
+                padding: EdgeInsets.all(Dimensions.height10),
                 child: CustomButton(
                     buttonText: "Go to Home",
                   onPressed: () => Get.offNamed(RouteHelper.getInitial()),
