@@ -56,6 +56,9 @@ dependencies:
   flutter_google_places: ^0.3.0 #NB USE 0.3.0
   webview_flutter: ^2.0.9 # NB USE 2.0.9
 
+  syncfusion_flutter_datepicker: ^21.1.41
+
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
