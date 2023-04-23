@@ -6,6 +6,7 @@ import 'package:i_eats/pages/account/account_page.dart';
 import 'package:i_eats/pages/auth/sign_in_page.dart';
 import 'package:i_eats/pages/auth/sign_up_page.dart';
 import 'package:i_eats/pages/home/main_food_page.dart';
+import 'package:i_eats/pages/orders/order_page.dart';
 import 'package:i_eats/utils/colors.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 
@@ -25,7 +26,8 @@ class _HomePageState extends State<HomePage> {
 
   List pages = [
     MainFoodPage(),
-    Container(child: Center(child: Text("History page"),),),
+    // Container(child: Center(child: Text("History page"),),),
+    OrderPage(),
     CartHistory(),
     AccountPage(),
   ];

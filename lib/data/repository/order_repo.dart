@@ -11,4 +11,8 @@ class OrderRepo{
   Future<Response> placeOrder(PlaceOrderBody placeOrder) async {
     return await apiClient.postData(AppConstants.PLACE_ORDER_URI, placeOrder.toJson());
   }
+
+  Future<Response> getOrderList() async {
+    return await apiClient.getData(AppConstants.ORDER_LIST);
+  }
 }
