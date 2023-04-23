@@ -10,12 +10,14 @@ class AppTextField extends StatelessWidget {
   final IconData icon;
   final TextInputType textType;
   bool isObscure;
+  bool maxLines;
 
   AppTextField({Key? key,
     required this.textController,
     required this.hintText,
     required this.icon, required this.textType,
-    this.isObscure = false
+    this.isObscure = false,
+    this.maxLines = false
   }) : super(key: key);
 
   @override
@@ -35,6 +37,7 @@ class AppTextField extends StatelessWidget {
           ]
       ),
       child: TextField(
+        maxLines: maxLines ? 3 : 1,
         obscureText: isObscure ? true: false, //for hiding the password
         controller: textController,
         decoration: InputDecoration(
