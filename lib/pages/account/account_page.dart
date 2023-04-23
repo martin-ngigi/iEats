@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:i_eats/base/custom_loader.dart';
+import 'package:i_eats/base/custome_app_bar.dart';
 import 'package:i_eats/controllers/auth_controller.dart';
 import 'package:i_eats/controllers/cart_controller.dart';
 import 'package:i_eats/controllers/location_controller.dart';
@@ -41,15 +42,7 @@ class AccountPage extends StatelessWidget {
       **/
     }
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: AppColors.mainColor,
-        title: BigText(
-          text: "Profile",
-          size: 24,
-          color: Colors.white,
-        ),
-        centerTitle: true,
-      ),
+      appBar: CustomAppBar(title: "Profile"),
       body: GetBuilder<UserController>(builder: (userController){
         return _userLoggedIn? (
                 userController.isLoading? Container(

@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:i_eats/base/custome_app_bar.dart';
 import 'package:i_eats/controllers/auth_controller.dart';
 import 'package:i_eats/controllers/location_controller.dart';
 import 'package:i_eats/controllers/user_controller.dart';
@@ -86,10 +87,7 @@ class _AddAddressPageState extends State<AddAddressPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Address Page"),
-        backgroundColor: AppColors.mainColor,
-      ),
+      appBar: CustomAppBar(title: "Address Page"),
 
       body: GetBuilder<UserController>(builder: (userController){
         /**
