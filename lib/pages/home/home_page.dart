@@ -2,6 +2,8 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:i_eats/pages/account/account_page.dart';
 import 'package:i_eats/pages/auth/sign_in_page.dart';
 import 'package:i_eats/pages/auth/sign_up_page.dart';
@@ -10,6 +12,9 @@ import 'package:i_eats/pages/orders/order_page.dart';
 import 'package:i_eats/utils/colors.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 
+import '../../controllers/auth_controller.dart';
+import '../../controllers/location_controller.dart';
+import '../../controllers/user_controller.dart';
 import '../cart/cart_histrory.dart';
 
 class HomePage extends StatefulWidget {
@@ -43,6 +48,13 @@ class _HomePageState extends State<HomePage> {
     // TODO: implement initState
     super.initState();
     //_controller = PersistentTabController(initialIndex: 0);
+    bool _userLoggedIn = Get.find<AuthController>().userLoggedIn();
+    if(_userLoggedIn){
+      Get.find<UserController>().getUserInfo();
+      Get.find<LocationController>().getAddressList();
+      print("-------[AccountPage] User has logged in");
+    }
+
   }
 
    //inbuilt bottom nav
