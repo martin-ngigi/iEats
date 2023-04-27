@@ -164,12 +164,12 @@ class LocationController extends GetxController implements GetxService{
 
   AddressModel getUserAddress(){
     late AddressModel _addressModel;
-    /**
-     * Converting string to map using jsonDecode.
-     */
-    _getAddress = jsonDecode(locationRepo.getUserAddress()); // convert getUserAddress string to a json map
-
     try{
+      /**
+       * Converting string to map using jsonDecode.
+       */
+      _getAddress = jsonDecode(locationRepo.getUserAddress()); // convert getUserAddress string to a json map
+
       _addressModel = AddressModel.fromJson(jsonDecode(locationRepo.getUserAddress()));
     }
     catch(e){

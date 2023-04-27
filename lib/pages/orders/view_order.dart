@@ -20,7 +20,7 @@ class ViewOrder extends StatelessWidget {
     return Scaffold(
       body: GetBuilder<OrderController>(builder: (orderController){
         if (orderController.isLoading == false){
-          late List<OrderModel> orderList;
+          late List<OrderModel> orderList=[];
           if(orderController.currentOrderList.isNotEmpty){
             orderList = isCurrent? orderController.currentOrderList.reversed.toList() : /// get the from latest
                                   orderController.historyOrderList.reversed.toList();

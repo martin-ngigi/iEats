@@ -113,14 +113,19 @@ flutter run
 - Enable Geocoding API, Geolocation API, Maps SDK for Android, Maps SDK for iOS
 
 ## Generating SHA-1 for android:
-- For Linux or macOS:
+- Navigate to Android folder inside project:
 ```
-keytool -list -v -keystore ~/.android/debug.keystore -alias androiddebugkey -storepass android -keypass android
+cd android
 ```
--For Windows:
+- Then generate SHA-1 in MAC / Linux
 ```
-keytool -list -v -keystore "%USERPROFILE%\.android\debug.keystore" -alias androiddebugkey -storepass android -keypass android
+./gradlew signingReport
 ```
+- Then generate SHA-1 in Windows
+```
+gradlew signingReport
+```
+
 
 ## Paypal integration:
 - Create a business paypal account

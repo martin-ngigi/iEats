@@ -1,3 +1,4 @@
+// import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:get/get.dart';
 import 'package:i_eats/data/api/api_client.dart';
 import 'package:i_eats/models/signup_body_model.dart';
@@ -66,4 +67,53 @@ class AuthRepo{
 
     return true;
   }
+
+  /// FCM Notifications
+  /**
+  Future<Response>  updateToken() async {
+    String? _deviceToken;
+    if(GetPlatform.isIOS && !GetPlatform.isWeb){
+      /// device is iOS
+      FirebaseMessaging.instance.setForegroundNotificationPresentationOptions(alert: true, badge: true, sound: true);
+      NotificationSettings settings = await FirebaseMessaging.instance.requestPermission(
+        alert: true, announcement: false, badge: true, carPlay:  false,
+        criticalAlert: false, provisional: false, sound: true
+      );
+      if(settings.authorizationStatus == AuthorizationStatus.authorized){
+        _deviceToken = await _saveDeviceToken();
+        print("------> [AuthRepo] My token is 1: ${_deviceToken}");
+      }
+    }
+    else{
+      /// device is android
+      _deviceToken = await _saveDeviceToken();
+      print("------> [AuthRepo] My token is 2: ${_deviceToken}");
+    }
+    if(!GetPlatform.isWeb){
+     // FirebaseMessaging.instance.subscribeToTopic(AppConstants.TOPIC);
+    }
+    return await apiClient.postData(AppConstants.TOKEN_URI, {"_method":"put", "cm_firebase_token": _deviceToken});
+  }
+
+  Future<String?> _saveDeviceToken() async{
+    String? _deviceToken = "@";
+    if(!GetPlatform.isWeb){
+      try{
+        FirebaseMessaging.instance.requestPermission();
+        _deviceToken = await FirebaseMessaging.instance.getToken();
+        // await FirebaseMessaging.registerForRemoteNotifications();
+      }
+      catch(e){
+        print("------> [AuthRepo]Error:  Could not get the token.");
+        print("------> [AuthRepo] Error: ${e}");
+
+      }
+    }
+    if(_deviceToken != null){
+      print("------> [AuthRepo] Device token is <--------- ${_deviceToken}");
+    }
+
+    return _deviceToken;
+  }
+      */
 }

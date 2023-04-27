@@ -4,8 +4,8 @@ class AppConstants{
 
   //http://mvs.bslmeiyu.com/api/v1/products/popular
   // static const String BASE_URL="http://mvs.bslmeiyu.com";
-  static const String BASE_URL="https://i-eats-api.codegarage.co.ke";
-  // static const String BASE_URL="https://72b1-105-163-158-254.ngrok-free.app";
+  // static const String BASE_URL="https://i-eats-api.codegarage.co.ke";
+  static const String BASE_URL="https://c185-197-248-102-187.ngrok-free.app";
   static const String POPULAR_PRODUCT_URI="/api/v1/products/popular";
   static const String RECOMMENDED_PRODUCT_URI="/api/v1/products/recommended";
   static const String DRINKS_URI="/api/v1/products/drinks";
@@ -37,5 +37,11 @@ class AppConstants{
   static const String PASSWORD="";
   static const String CART_LIST="cart-list";
   static const String CART_HISTORY_LIST="cart-history-list";
+
+/// FCM Notifications
+//tokens
+  /**
+  static const String TOKEN_URI="/api/v1/customer/cm-firebase-token";
+      */
 
 }

@@ -58,12 +58,18 @@ dependencies:
 
   syncfusion_flutter_datepicker: ^21.1.41
 
-  # for FCM
-  firebase_core: ^1.2.1
-  firebase_messaging: ^11.2.4
-  flutter_local_notifications: ^9.1.5
+  # for FCM[DBESTECH VERSIONS]
+#  firebase_core: ^1.2.1
+#  firebase_messaging: ^11.2.4
+#  flutter_local_notifications: ^9.1.5
 
+  # for FCM[LATEST VERSIONS]
+#  firebase_core: ^2.10.0
+#  firebase_messaging: ^14.4.1
+#  flutter_local_notifications: ^13.0.0
 
+#dependency_overrides:
+#  firebase_core_platform_interface: 4.6.0
 
 
 dev_dependencies:

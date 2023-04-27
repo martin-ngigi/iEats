@@ -5,6 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:i_eats/controllers/auth_controller.dart';
 import 'package:i_eats/routes/route_helper.dart';
 
 import '../../controllers/popular_product_controller.dart';
@@ -31,6 +32,12 @@ class _SplashScreenState extends State<SplashScreen> with TickerProviderStateMix
   @override
   void initState() {
     _loadResources();
+
+    /**
+     * NOTIFICATIONS
+     */
+    // Get.find<AuthController>().updateToken();
+
     super.initState();
     //initialize animation.
     controller = AnimationController(

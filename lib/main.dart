@@ -1,8 +1,15 @@
+/**
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+**/
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:i_eats/controllers/cart_controller.dart';
+import 'package:i_eats/helper/notification_helper.dart';
 import 'package:i_eats/pages/auth/sign_in_page.dart';
 import 'package:i_eats/pages/auth/sign_up_page.dart';
 import 'package:i_eats/pages/cart/cart_page.dart';
@@ -22,12 +29,42 @@ import 'controllers/recommended_product_controller.dart';
 import 'helper/dependencies.dart' as dep;
 import 'pages/examples/main_google_maps.dart';
 
+/// FCM Notifications
+/**
+Future<dynamic> myBackgroundMessageHandler(RemoteMessage message) async{
+  print("--------->[main] onBackground: ${message.notification?.title}/${message.notification?.body}"
+      "/${message.notification?.titleLocKey}");
+}
+final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
+*/
 Future<void> main() async {
   //wait till all dependencies are loaded
   WidgetsFlutterBinding.ensureInitialized();
 
   //load the dependencies
   await dep.init();
+
+  /// FCM Notifications
+  /**
+  // initialize firebase.
+  // setPathUrlStrategy();
+  await Firebase.initializeApp();
+
+
+
+  try{
+    if(GetPlatform.isMobile){
+      final RemoteMessage? remoteMessage =  await FirebaseMessaging.instance.getInitialMessage();
+      await NotificationHelper.initialize(flutterLocalNotificationsPlugin);
+      FirebaseMessaging.onBackgroundMessage(myBackgroundMessageHandler);
+    }
+  }
+  catch(e){
+    if(kDebugMode){
+      print("--------->[main] onBackground: ${e.toString()}");
+    }
+  }
+  */
 
   runApp(const MyApp());
 }

@@ -72,4 +72,11 @@ class AuthController extends GetxController implements GetxService{
      return authRepo.clearSharedData();
   }
 
+  /// FCM Notifications
+  /**
+  Future<void> updateToken() async{
+     await authRepo.updateToken();
+  }
+      */
+
 }
