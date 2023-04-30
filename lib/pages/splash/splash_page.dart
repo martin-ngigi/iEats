@@ -36,7 +36,7 @@ class _SplashScreenState extends State<SplashScreen> with TickerProviderStateMix
     /**
      * NOTIFICATIONS
      */
-    // Get.find<AuthController>().updateToken();
+    Get.find<AuthController>().updateToken();
 
     super.initState();
     //initialize animation.

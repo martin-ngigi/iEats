@@ -64,9 +64,9 @@ dependencies:
 #  flutter_local_notifications: ^9.1.5
 
   # for FCM[LATEST VERSIONS]
-#  firebase_core: ^2.10.0
-#  firebase_messaging: ^14.4.1
-#  flutter_local_notifications: ^13.0.0
+  firebase_core: ^2.10.0
+  firebase_messaging: ^14.4.1
+  flutter_local_notifications: ^13.0.0
 
 #dependency_overrides:
 #  firebase_core_platform_interface: 4.6.0

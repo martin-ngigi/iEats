@@ -1,42 +1,41 @@
 {
   "project_info": {
-    "project_number": "673419789123",
-    "project_id": "ieats-381804",
-    "storage_bucket": "ieats-381804.appspot.com"
+    "project_number": "342155532841",
+    "project_id": "ieats1",
+    "storage_bucket": "ieats1.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:673419789123:android:eb06a931c2c547d46be5f6",
+        "mobilesdk_app_id": "1:342155532841:android:f7af060b4b7bf83807da38",
         "android_client_info": {
           "package_name": "com.example.i_eats"
         }
       },
       "oauth_client": [
         {
-          "client_id": "673419789123-jvbomdn6vae7eeig0ok5f569i52vck7q.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.example.i_eats",
-            "certificate_hash": "8a6bbeb594efe90527f389628bdf223f75c9b358"
-          }
-        },
-        {
-          "client_id": "673419789123-g7s6v8krq1a23c5ad360ovmri61qg8lh.apps.googleusercontent.com",
+          "client_id": "342155532841-cepeiivtrtj1eoa2lkn7lsr47ksqcp57.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyB9txBevFfFt2ENt4pvW8-Ch6PWfyxHsNo"
+          "current_key": "AIzaSyD6XPcXiIOwjDmaycTmuZZfcgNI0sDHFtQ"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "673419789123-g7s6v8krq1a23c5ad360ovmri61qg8lh.apps.googleusercontent.com",
+              "client_id": "342155532841-cepeiivtrtj1eoa2lkn7lsr47ksqcp57.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "342155532841-re8b832thk5g4kldca85dspu49kfh58i.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.iEats"
+              }
             }
           ]
         }

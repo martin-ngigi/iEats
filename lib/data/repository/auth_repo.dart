@@ -1,4 +1,5 @@
 // import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:get/get.dart';
 import 'package:i_eats/data/api/api_client.dart';
 import 'package:i_eats/models/signup_body_model.dart';
@@ -69,7 +70,7 @@ class AuthRepo{
   }
 
   /// FCM Notifications
-  /**
+
   Future<Response>  updateToken() async {
     String? _deviceToken;
     if(GetPlatform.isIOS && !GetPlatform.isWeb){
@@ -104,16 +105,16 @@ class AuthRepo{
         // await FirebaseMessaging.registerForRemoteNotifications();
       }
       catch(e){
-        print("------> [AuthRepo]Error:  Could not get the token.");
-        print("------> [AuthRepo] Error: ${e}");
+        print("------> [AuthRepo]Error:  Could not get fcm the token.");
+        print("------> [AuthRepo] Fcm Error: ${e}");
 
       }
     }
     if(_deviceToken != null){
-      print("------> [AuthRepo] Device token is <--------- ${_deviceToken}");
+      print("------> [AuthRepo] fcm Device token is <--------- ${_deviceToken}");
     }
 
     return _deviceToken;
   }
-      */
+
 }

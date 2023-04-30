@@ -3,8 +3,11 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 **/
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
@@ -28,15 +31,16 @@ import 'controllers/popular_product_controller.dart';
 import 'controllers/recommended_product_controller.dart';
 import 'helper/dependencies.dart' as dep;
 import 'pages/examples/main_google_maps.dart';
+import 'firebase_options.dart';
 
 /// FCM Notifications
-/**
+
 Future<dynamic> myBackgroundMessageHandler(RemoteMessage message) async{
   print("--------->[main] onBackground: ${message.notification?.title}/${message.notification?.body}"
       "/${message.notification?.titleLocKey}");
 }
 final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
-*/
+
 Future<void> main() async {
   //wait till all dependencies are loaded
   WidgetsFlutterBinding.ensureInitialized();
@@ -45,10 +49,20 @@ Future<void> main() async {
   await dep.init();
 
   /// FCM Notifications
-  /**
+
   // initialize firebase.
   // setPathUrlStrategy();
-  await Firebase.initializeApp();
+  // await Firebase.initializeApp();
+
+  // initialize firebase
+  /// Link https://firebase.google.com/docs/flutter/setup?platform=android
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+
+  // final fcmToken = await FirebaseMessaging.instance.getToken();
+  // print("-----[Main] FCM Token : ${fcmToken}");
+  /// FCM android emulator token : czZr0J-JSOytCj2EUiI9E3:APA91bFnoAPVMzR7RREqutD_uZ-eHKSRG3juWjdO4Vur1HjM_CA5wsXg4lUsUEyB9QPDfdcjzNcCvCt94J7MZw1r84Jv9wd9ZiiJiOJ0FSYRgwsn80GPV-Ecn-8mxNhFIzzU61IPlswV
 
 
 
@@ -64,7 +78,6 @@ Future<void> main() async {
       print("--------->[main] onBackground: ${e.toString()}");
     }
   }
-  */
 
   runApp(const MyApp());
 }

@@ -339,10 +339,10 @@ class CartPage extends StatelessWidget {
                           // this will clear the current cart, and store to history cart
                           if(Get.find<AuthController>().userLoggedIn()){
                             /// FCM Notifications
-                            /**
+
                             ///update user token
                             Get.find<AuthController>().updateToken();
-                                */
+
 
                             /// user is logged in
                             print("----> [Cart Page] Tapped, user is logged in");
