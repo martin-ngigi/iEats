@@ -72,6 +72,7 @@ class NotificationHelper{
     });
   }
 
+  //show notifications
   static Future<void> showNotification(RemoteMessage msg, FlutterLocalNotificationsPlugin fln) async {
     BigTextStyleInformation bigTextStyleInformation = BigTextStyleInformation(
       msg.notification!.body!, htmlFormatBigText: true,
