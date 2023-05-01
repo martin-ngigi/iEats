@@ -42,16 +42,17 @@ class SignInPage extends StatelessWidget {//used stateless widget because GET al
         showCustomSnackBar("Password can not be less than 6 characters", title: "Password length");
       }
       else{
-        showCustomSnackBar("All went well", title: "Perfect");
+        //showCustomSnackBar("All went well", title: "Perfect");
 
         authController.login(email, password).then((status){
           if(status.isSuccess){
+            authController.saveUserNumberAndPassword(email, password);
             print("---> [SignInPage] Success registration");
             //Navigate to Home Page
             Get.toNamed(RouteHelper.getInitial());
           }
           else{
-            showCustomSnackBar("---> [SignInPage] Error :"+status.message);
+            showCustomSnackBar("SignIn Error :${status.message}");
           }
         });
 

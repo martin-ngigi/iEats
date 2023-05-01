@@ -2,10 +2,15 @@ class AppConstants{
   static const String APP_NAME="iEats";
   static const int APP_VERSION=1;
 
+  /// ios simulator
+  static const String BASE_URL="http://127.0.0.1:8000";
+  /// android simulator
+  // static const String BASE_URL="http://10.0.2.2:8000";
+
   //http://mvs.bslmeiyu.com/api/v1/products/popular
   // static const String BASE_URL="http://mvs.bslmeiyu.com";
   // static const String BASE_URL="https://i-eats-api.codegarage.co.ke";
-  static const String BASE_URL="https://7822-105-163-2-83.ngrok-free.app";
+  // static const String BASE_URL="https://7822-105-163-2-83.ngrok-free.app";
   static const String POPULAR_PRODUCT_URI="/api/v1/products/popular";
   static const String RECOMMENDED_PRODUCT_URI="/api/v1/products/recommended";
   static const String DRINKS_URI="/api/v1/products/drinks";

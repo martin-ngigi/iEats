@@ -59,7 +59,8 @@ class SignUpPage extends StatelessWidget {//used stateless widget because GET al
         showCustomSnackBar("Password can not be less than 6 characters", title: "Password length");
       }
       else{
-        showCustomSnackBar("All went well", title: "Perfect");
+        //showCustomSnackBar("All went well", title: "Perfect");
+
         //create an instance of signupBody
         SignupBody signupBody =  SignupBody(name: name, phone: phone, email: email, password: password);
         authController.registration(signupBody).then((status){
@@ -69,7 +70,7 @@ class SignUpPage extends StatelessWidget {//used stateless widget because GET al
             Get.toNamed(RouteHelper.getInitial());
           }
           else{
-            showCustomSnackBar("---> [SignUpPage] Error :"+status.message);
+            showCustomSnackBar("SignUp Error :${status.message}");
           }
         });
 

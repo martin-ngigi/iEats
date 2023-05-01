@@ -26,7 +26,8 @@ class AuthController extends GetxController implements GetxService{
     }
     else{
       //error response
-      responseModel = ResponseModel(false, response.statusText!);
+      print("----->[AuthController] My Response is :${response.body['errors'][0]["message"]}");
+      responseModel = ResponseModel(false, response.body['errors'][0]["message"]);
     }
     _isLoading = false;
     update(); //same as setState(){}
@@ -47,12 +48,14 @@ class AuthController extends GetxController implements GetxService{
       //save token obtained from the server
       //print("----->[AuthController] Backend Token");
       authRepo.saveUserToken(response.body["token"]);
+      await authRepo.updateToken();
       print("----->[AuthController] TOKEN IS: \n "+response.body["token"].toString());
       responseModel = ResponseModel(true, response.body["token"]);
     }
     else{
       //error response
-      responseModel = ResponseModel(false, response.statusText!);
+      print("----->[AuthController] My Response is :${response.body['errors'][0]["message"]}");
+      responseModel = ResponseModel(false, response.body['errors'][0]["message"]);
     }
     _isLoading = false;
     update(); //same as setState(){}
