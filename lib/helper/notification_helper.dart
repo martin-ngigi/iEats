@@ -44,6 +44,13 @@ class NotificationHelper{
       print("--------->onMessage: ${message.notification?.title}/"
           "${message.notification?.body}"
           "/${message.notification?.titleLocKey}");
+      print("----------FCM Message Data---------\n:${message.data.toString()}: ");
+      print("----------FCM Message Notification---------\n:"
+          "Title: ${message.notification?.title}\n"
+          "Body: ${message.notification?.body}\n"
+          "TitleLocKey: ${message.notification?.titleLocKey}\n"
+          "TitleLocArgs: ${message.notification?.titleLocArgs}\n"
+          "\n\n\n\n");
 
       NotificationHelper.showNotification(message, flutterLocalNotificationsPlugin);
       if(Get.find<AuthController>().userLoggedIn()){
@@ -55,7 +62,7 @@ class NotificationHelper{
 
       print("--------->onOpenApp: ${message.notification?.title}/"
           "${message.notification?.body}"
-          "/${message.notification?.titleLocKey}");
+          "/${message.notification?.titleLocKey}\nmessage:${message.toString()}");
 
       try{
 
@@ -81,7 +88,7 @@ class NotificationHelper{
 
     AndroidNotificationDetails androidPlatformChannelSpecifies = AndroidNotificationDetails(
         'channel_id_1',
-        'iEats',
+        'iEats', // channel name
       importance: Importance.high,
       styleInformation: bigTextStyleInformation, priority: Priority.high,
       playSound: true,

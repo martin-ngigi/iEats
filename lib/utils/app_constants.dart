@@ -5,7 +5,7 @@ class AppConstants{
   //http://mvs.bslmeiyu.com/api/v1/products/popular
   // static const String BASE_URL="http://mvs.bslmeiyu.com";
   // static const String BASE_URL="https://i-eats-api.codegarage.co.ke";
-  static const String BASE_URL="https://d521-105-163-2-83.ngrok-free.app";
+  static const String BASE_URL="https://7822-105-163-2-83.ngrok-free.app";
   static const String POPULAR_PRODUCT_URI="/api/v1/products/popular";
   static const String RECOMMENDED_PRODUCT_URI="/api/v1/products/recommended";
   static const String DRINKS_URI="/api/v1/products/drinks";
